@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	     <script src="https://code.jquery.com/jquery-3.6.0.js" 
+		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+	<script>
+		function play_start(){
+			$.post("/open_api/play_movie", { "data":"somedata", "any":"data"},
+				function(data, textStatus) {
+					//this gets called when browser receives response from server
+					console.log(data);
+				}, "json").fail( function(response) {
+					//this gets called if the server throws an error
+					console.log("error");
+				console.log(response);});
+		}
+	</script>
+
+
+	<video id="video" width="320" height="240" controls>
+		  <source src="movie.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+	</video>
+
+
+	<script>
+		video.addEventListener("play", (event) => {
+			play_start();
+		});
+	</script>
+
+    </body>
+</html>
+
