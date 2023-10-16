@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Intellectual Connection</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<style>
+		body {
+			background: #913d05;
+			color: #444;
+			font-family: "Open Sans", sans-serif;
+			line-height: 1.6;
+			margin: 0;
+			padding: 0;
+		}
+
+		.hero-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #913d05;
+			opacity: 0.7;
+			z-index: -1;
+		}
+
+
+		.hero-section {
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+
+		.hero-section h1 {
+			color: #fff;
+			font-size: 4rem;
+			font-weight: 600;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+		}
+		.hero-section p {
+			color: #fff;
+			font-size: 1.5rem;
+			font-weight: 300;
+			margin-top: 1rem;
+			text-align: center;
+			text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+		}
+
+		.btn-primary {
+			background: #0099CC;
+			border-color: #0099CC;
+			border-radius: 25px;
+			font-weight: 600;
+			letter-spacing: 1px;
+			padding: 0.75rem 2rem;
+			text-transform: uppercase;
+			transition: all 0.3s ease-in-out;
+			margin-top: 2rem;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.btn-primary:hover {
+			background: #006699;
+			border-color: #006699;
+		}
+
+        .navbar-brand {
+            background-image: url('https://cdn.discordapp.com/attachments/1008571069797507102/1088568757879836692/RottenRob_A_minimalistic_and_elite_brand_logo_for_a_restaurant__200dcb2f-f0bd-4469-a5d3-603ebd0b7fea.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            height: 100px;
+            width: 200px;
+        }
+
+		.navbar-collapse {
+			flex-grow: unset !important;
+		}
+
+		.nav-link {
+			color: #222;
+			/*font-size*/
+		}
+		.login {
+			text-align:left;
+			padding:3px;
+		}
+	</style>
+
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a href="#"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="Web App main.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="User Profile.html">User Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Profile Reactions.html">Profile Reactions</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Inbox.html">Inbox</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Find Match.html">Find a Match</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Login.html">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Signup.html">Sign Up</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<section class="hero-section">
+		<div class="hero-overlay"></div>
+		<div class="container">
+			<div class="row align-items-center">
+				<div>
+					<h1>Welcome Intellectual Connection</h1>
+					<p class="lead">Start meeting people today!</p>
+					<a href="Inspection.html"><button class="btn btn-primary btn-lg">Start Matching Now</button></a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
