@@ -10,28 +10,36 @@ def get_db():
     #return psycopg2.connect(host="localhost", dbname="authme" , user="loki", password="4prez")
     return sqlite3.connect("database.db")
 
-def create_db_table():
-    try:
-        conn = get_db()
-        conn.execute('''
-            CREATE TABLE users (
-                user_id INTEGER PRIMARY KEY NOT NULL,
-                name TEXT NOT NULL,
-                password TEXT NOT NULL,
-                email TEXT NOT NULL,
-                address TEXT NOT NULL,
-                phone TEXT NOT NULL,
-                gender TEXT NOT NULL,
-                birth DATA NOT NULL, 
-                introduce TEXT NOT NULL 
-            );
-        ''')
-        conn.commit()
-        print("User table is created successfully!")
-    except:
-        print("Failed to create table")
-    finally:
-        conn.close()
+def create_user_table():
+    conn = get_db()
+    query = """
+            CREATE TABLE IF NOT EXISTS "users" (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            password TEXT,
+            email TEXT,
+            address TEXT,
+            phone TEXT,
+            gender TEXT,
+            birth DATE, 
+            introduce TEXT
+        );
+        """
+    conn.execute(query)
+
+def create_questionnaire_table():
+    conn = get_db()
+    query = """
+            CREATE TABLE IF NOT EXISTS "questionnaire" (
+            _id INTEGER PRIMARY KEY AUTOINCREMENT,
+            answer_1 boolean DEFAULT 0,
+            answer_2 boolean DEFAULT 0,
+            answer_3 boolean DEFAULT 0,
+            answer_4 boolean DEFAULT 0,
+            answer_5 boolean DEFAULT 0
+            )
+    """
+    conn.execute(query)
 
 
 def get_db_instance():  
