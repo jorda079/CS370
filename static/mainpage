@@ -73,15 +73,7 @@
 			border-color: #006699;
 		}
 
-        .navbar-brand {
-            background-image: url('https://cdn.discordapp.com/attachments/1008571069797507102/1088568757879836692/RottenRob_A_minimalistic_and_elite_brand_logo_for_a_restaurant__200dcb2f-f0bd-4469-a5d3-603ebd0b7fea.png');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position: center;
-            height: 100px;
-            width: 200px;
-        }
-
+        
 		.navbar-collapse {
 			flex-grow: unset !important;
 		}
@@ -136,7 +128,7 @@
 				<div>
 					<h1>Welcome Intellectual Connection</h1>
 					<p class="lead">Start meeting people today!</p>
-					<a href="Inspection.html"><button class="btn btn-primary btn-lg">Start Matching Now</button></a>
+					<a href="Find Match.html"><button class="btn btn-primary btn-lg">Start Matching Now</button></a>
 				</div>
 			</div>
 		</div>
