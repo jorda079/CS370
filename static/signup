@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Signup</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		body {
+			background: #913d05;
+			color: #444;
+			font-family: "Open Sans", sans-serif;
+			line-height: 1.6;
+			margin: 0;
+			padding: 0;
+		}
+		.navbar-collapse {
+			flex-grow: unset !important;
+		}
+
+		.nav-link {
+			color: #222;
+		}
+		.main {
+			margin:auto;
+			width:60%;
+			padding:10px;
+            text-align:center;
+		}
+        .login {
+            filter: drop-shadow(3px 3px 4px #5A5A5A);
+            border:solid thin #222;
+            width:45%;
+            margin:auto;
+            margin-top: 11%;
+            background-color:whitesmoke;
+            text-align:center;
+            padding:5%;
+			border-radius:10px;
+        }
+		.text {
+			border-radius:5px;
+			border-width:1px;
+			width:50%;
+			border-color:#255C55;
+		}
+		.remember {
+			margin:15px;
+		}
+        .login_button {
+            background-color:#913d05;
+            color:white;
+            width:150px;
+            text-align:center;
+            border-radius:10px;
+            border-width:0px;
+            display:inline-block;
+        }
+        .login_button:hover {
+            background-color: black;
+        }
+		.error {
+			color:red;
+			font-size:0.8em;
+		}
+		hr {
+			margin-top:20px;
+			margin-bottom:15px;
+		}
+		a {
+			color:black;
+		}
+		a:hover {
+			color:black;
+		}
+		a:clicked {
+			color: black;
+		}
+        label {
+            padding-top:10px;
+        }
+	</style>
+
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a href="JAR_project.html"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="JAR_project.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Services.html">User Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="About Us.html">Profile Reactions</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Contact.html">Inbox</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Inspection.html">Find a Match</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Login.html">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Signup.html">Sign Up</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+    <div class="main">
+        <div class="login">
+			<form id="f" action="Signup.php" method="post">
+				<label for="email">Email:</label>
+				<br>
+				<input type="text" id="email" class="text" name="email">
+				<br>
+				<div id="email_empty" style="display:none;" class="error">
+					<span>Email required</span>
+                    <br>
+				</div>
+				<label for="email2">Confirm Email:</label>
+				<br>
+				<input type="text" id="email2" class="text" name="email2">
+				<br>
+				<div id="email_empty" style="display:none;" class="error">
+					<span>Email required</span>
+                    <br>
+				</div>
+				<div id="email_match" style="display:none;" class="error">
+					<span>Emails do not match</span>
+                    <br>
+				</div>
+
+				<label for="username">Username:</label>
+				<br>
+				<input type="text" id="username" class="text" name="username">
+				<br>
+				<div id="user_empty" style="display:none;" class="error">
+					<span>Username required</span>
+                    <br>
+				</div>
+
+				<label for="password">Password:</label>
+				<br>
+				<input type="password" id="password" class="text" name="password">
+				<div id="pass_empty" style="display:none;" class="error">
+                    <br>
+					<span>Password required</span>
+				</div>
+
+				<br>
+				<label for="password2"> Confirm Password:</label>
+				<br>
+				<input type="password" id="password2" class="text" name="password2">
+				<br>
+				<div id="pass2_empty" style="display:none;" class="error">
+					<span>Password Confirmation Required</span>
+                    <br>
+				</div>
+				<div id="pass_match" style="display:none;" class="error">
+					<span>Passwords Don't Match</span>
+                    <br>
+				</div>
+                <br>
+				<input type="submit" value="Create Account" class="login_button">
+				<hr>
+				<a href="Login.html">Already Have An Account</a>
+			</form>
+        </div>
+	</div>
+</body>
+<script>
+    document.getElementById("f").addEventListener("submit", function(e) {
+		//e.preventDefault();
+		let username = document.getElementById("username");
+		let password = document.getElementById("password");
+		let password2 = document.getElementById("password2");
+		let email = document.getElementById("email");
+		let email2 = document.getElementById("email2");
+
+
+		document.getElementById("user_empty").style.display = "none";
+		document.getElementById("pass_empty").style.display = "none";
+		document.getElementById("pass2_empty").style.display = "none";
+		document.getElementById("pass_match").style.display = "none";
+		document.getElementById("email_empty").style.display = "none";
+		document.getElementById("email_match").style.display = "none";
+
+		let error = false;
+		if (username.value == "") {
+			document.getElementById("user_empty").style.display = "inline";
+			error = true;
+		}
+		if (email.value == "") {
+			document.getElementById("email_empty").style.display = "inline";
+			error = true;
+		}
+		if (password.value == "") {
+			document.getElementById("pass_empty").style.display = "inline";
+			error = true;
+		}
+		if (password2.value == "") {
+			document.getElementById("pass2_empty").style.display = "inline";
+			error = true;
+		}
+        if (password.value != password2.value) {
+			document.getElementById("pass_match").style.display = "inline";
+			error = true;
+        }
+		if (email.value != email2.value) {
+			document.getElementById("email_match").style.display = "inline";
+			error = true;
+		}
+		if (error) {
+			console.log("error");
+			e.preventDefault();
+		}
+	});
+</script>
+</html>
