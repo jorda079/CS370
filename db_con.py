@@ -1,5 +1,6 @@
 #Needed for postgres
-#import psycopg2 
+#import psycopg2
+# Description
 
 #Use sqllite
 import sqlite3
@@ -11,7 +12,6 @@ def get_db():
     return sqlite3.connect("database.db")
 
 def create_user_table():
-    conn = get_db()
     query = """
             CREATE TABLE IF NOT EXISTS "users" (
             id INTEGER PRIMARY KEY,
@@ -25,10 +25,10 @@ def create_user_table():
             introduce TEXT
         );
         """
-    conn.execute(query)
+    return query
+
 
 def create_questionnaire_table():
-    conn = get_db()
     query = """
             CREATE TABLE IF NOT EXISTS "questionnaire" (
             _id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -39,7 +39,7 @@ def create_questionnaire_table():
             answer_5 boolean DEFAULT 0
             )
     """
-    conn.execute(query)
+    return query
 
 
 def get_db_instance():  
@@ -55,7 +55,8 @@ if __name__ == "__main__":
     cur.execute("select * from users")
     for r in cur.fetchall():
         print(r)
-
+    cur.execute(create_user_table())
+    cur.execute(create_questionnaire_table())
     cur.execute("create table music ( song_name varchar(255), rating int);")
     db.commit()
 
