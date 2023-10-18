@@ -1,122 +1,270 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <style>
-        /* Color Palette */
-        :root {
-            --color-1: #000000;
-            --color-2: #ffffff;
-            --color-3: #ffffff;
-            --color-4: #913d05;
-            --color-5: #000000; /* Updated text color to black */
-        }
-
-        /* Body Styles */
-        body {
-            background-color: var(--color-4);
-            color: var(--color-1);
-            font-family: 'San Francisco', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Brainwave Capture</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <style>
+          body {
+              background: #913d05;
+              color: #fff;
+              font-family: "Open Sans", sans-serif;
+              line-height: 1.6;
+              margin: 0;
+              padding: 0;
+          }
+          .nav-link, .btn {
+              color: #fff;
+          }
+          .main-container, .login-container, .signup-container, .video-container {
+              margin: auto;
+              width: 60%;
+              padding: 10px;
+              text-align: center;
+          }
+          .login {
+              filter: drop-shadow(3px 3px 4px #5A5A5A);
+              border: solid thin #222;
+              width: 45%;
+              margin: auto;
+              margin-top: 11%;
+              background-color: whitesmoke;
+              text-align: center;
+              padding: 5%;
+              border-radius: 10px;
+              color: black;
+          }
+          .text {
+              border-radius: 5px;
+              border-width: 1px;
+              width: 50%;
+              border-color: #255C55;
+          }
+          .remember {
+              margin: 15px;
+          }
+          .login_button {
+              background-color: #913d05;
+              color: white;
+              width: 100px;
+              text-align: center;
+              border-radius: 10px;
+              border-width: 0px;
+              display: inline-block;
+          }
+          .login_button:hover {
+              background-color: black;
+          }
+          .error {
+              color: red;
+              font-size: 0.8em;
+          }
+          hr {
+              margin-top: 20px;
+              margin-bottom: 15px;
+          }
+          a {
+              color: black;
+          }
+          a:hover {
+              color: black;
+          }
+        /* Center the video container */
+        .video-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            height: 100vh; /* This ensures the container takes the full viewport height */
+        }
+        /* Align instructions to the left */
+        .container h2,
+        .container ol {
+            text-align: left;
         }
 
-        /* Header Styles */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--color-2); /* Updated background color to white */
-            padding: 10px 20px;
-            border-bottom: 2px solid var(--color-5);
-            width: 100%;
-        }
 
-        .tabs {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            justify-content: center; /* Center the tabs horizontally */
-        }
+      </style>
+  </head>
+  <body>
+      <header>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <a href="#"><img height="50" style="border-radius: 30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0);" onclick="showMain()">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0);" onclick="showLogin()">Login</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0);" onclick="showSignup()">Sign Up</a>
+                      </li>
+                      <!-- New Tab for Playing Video -->
+                      <li class="nav-item">
+                          <a class="nav-link" href="javascript:void(0);" onclick="showVideo()">Play Video</a>
+                      </li>
+                  </ul>
+              </div>
+          </nav>
+      </header>
 
-        .tab {
-            margin-right: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            color: var(--color-5);
-            background-color: var(--color-2); /* Added white background to tabs */
-            padding: 5px 10px; /* Added padding to tabs */
-        }
+      <!-- Main Content -->
+      <div class="main-container" id="mainContent">
+          <div class="main-content">
+              <h1>Welcome to Brainwave Capture!</h1>
+              <p>Start meeting like-minded people today.</p>
+              <button class="btn btn-primary" id="loginButton" onclick="showLogin()">Log In</button>
+              <button class="btn btn-primary" id="signupButton" onclick="showSignup()">Sign Up</button>
+          </div>
+      </div>
 
-        .tab:last-child {
-            margin-right: 0;
-        }
+      <!-- Log In Content -->
+      <div class="login-container" id="loginContent" style="display: none">
+          <div class="login">
+              <form id="f" action="Login.php" method="post">
+                  <label for="username">Username:</label>
+                  <br>
+                  <input type="text" id="username" class="text" name="username">
+                  <br>
+                  <div id="user_empty" style="display:none;" class="error">
+                      <span>Username required</span>
+                      <br>
+                  </div>
+                  <label for="password">Password:</label>
+                  <br>
+                  <input type="password" id="password" class="text" name="password">
+                  <div id="pass_empty" style="display:none;" class="error">
+                      <br>
+                      <span>Password required</span>
+                      <br>
+                  </div>
+                  <div class="remember">
+                      <input type="checkbox" id="Remember">
+                      <label for="Remember">Remember Me</label>
+                  </div>
+                  <input type="submit" value="Login" class="login_button">
+                  <hr>
+                  <a href="Signup.html">Sign-Up</a>
+              </form>
+          </div>
+      </div>
 
-        .user-profile {
-            align-self: flex-end; /* Align the User Profile to the top right */
-            text-align: right; /* Align the user profile content to the right */
-        }
+      <!-- Sign Up Content -->
+      <div class="signup-container" id="signupContent" style="display: none">
+          <div class="login">
+              <form id="f" action="Signup.php" method="post">
+                  <label for="email">Email:</label>
+                  <br>
+                  <input type="text" id="email" class="text" name="email">
+                  <br>
+                  <div id="email_empty" style="display:none;" class="error">
+                      <span>Email required</span>
+                      <br>
+                  </div>
+                  <label for="email2">Confirm Email:</label>
+                  <br>
+                  <input type="text" id="email2" class="text" name="email2">
+                  <br>
+                  <div id="email_empty" style="display:none;" class="error">
+                      <span>Email required</span>
+                      <br>
+                  </div>
+                  <div id="email_match" style="display:none;" class="error">
+                      <span>Emails do not match</span>
+                      <br>
+                  </div>
+                  <label for="username">Username:</label>
+                  <br>
+                  <input type="text" id="username" class="text" name="username">
+                  <br>
+                  <div id="user_empty" style="display:none;" class="error">
+                      <span>Username required</span>
+                      <br>
+                  </div>
+                <label for="password">Password:</label>
+                  <br>
+                  <input type="password" id="password" class="text" name="password">
+                  <div id="pass_empty" style="display:none;" class="error">
+                      <br>
+                      <span>Password required</span>
+                  </div>
+                  <br>
+                  <label for="password2"> Confirm Password:</label>
+                  <br>
+                  <input type="password" id="password2" class="text" name="password2">
+                  <br>
+                  <div id="pass2_empty" style="display:none;" class="error">
+                      <span>Password Confirmation Required</span>
+                      <br>
+                  </div>
+                  <div id="pass_match" style="display:none;" class="error">
+                      <span>Passwords Don't Match</span>
+                      <br>
+                  </div>
+                  <br>
+                  <input type="submit" value="Create Account" class="login_button">
+                  <hr>
+                  <a href="Login.html">Already Have An Account</a>
+              </form>
+          </div>
+      </div>
 
-        /* Welcome Message and Instructions Styles */
-        .container {
-            background-color: var(--color-2); /* Updated background color to white */
-            border: 2px solid var(--color-3);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 600px;
-        }
-
-        /* Add any other styles here */
-    </style>
-</head>
-<body>
-    <header>
-        <ul class="tabs">
-            <li class="tab">User Profile</li>
-            <li class="tab">Brainwave Reactions</li>
-            <li class="tab">Messages</li>
-            <li class="tab">Find a Match</li>
-        </ul>
-        <div class="user-profile">
-            <!-- Add user profile content here -->
+      <!-- Video Content (Added) -->
+    <div class="video-container" id="videoContent" style="display: none">
+        <!-- Provided video page content -->
+        <div class="container">
+            <h1>Welcome to Brainwave Capture</h1>
+            <p>Now we will capture your brainwaves while you watch this short video.</p>
+            <h2>Instructions:</h2>
+            <ol>
+                <li>Place the headband on your head.</li>
+                <li>The gold plates of the headband should be just on your forehead to scan your prefrontal cortex.</li>
+                <li>The prongs should be on the back of your head just on the base of your skull to scan for visual receptors.</li>
+                <li>Once you are ready, go ahead and press play.</li>
+            </ol>
         </div>
-    </header>
 
-    <div class="container">
-        <h1>Welcome to Brainwave Capture</h1>
-        <p>Now we will capture your brainwaves while you watch this short video.</p>
-        <h2>Instructions:</h2>
-        <ol>
-            <li>Place the headband on your head.</li>
-            <li>The gold plates of the headband should be just on your forehead to scan your prefrontal cortex.</li>
-            <li>The prongs should be on the back of your head just on the base of your skull to scan for visual receptors.</li>
-            <li>Once you are ready, go ahead and press play.</li>
-        </ol>
+        <div class="video-container" id="videoContainer">
+            <video id="video" controls>
+                <source src="movie.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </div>
 
-    <div class="video-container">
-        <video id="video" controls>
-            <source src="movie.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
 
-    <script>
-        function play_start() {
-            // Your existing JavaScript code here
-        }
+      <script>
+          function showMain() {
+              document.getElementById('mainContent').style.display = 'block';
+              document.getElementById('loginContent').style.display = 'none';
+              document.getElementById('signupContent').style.display = 'none';
+              document.getElementById('videoContent').style.display = 'none';
+          }
 
-        video.addEventListener("play", (event) => {
-            play_start();
-        });
-    </script>
-</body>
-</html>
+          function showLogin() {
+              document.getElementById('mainContent').style.display = 'none';
+              document.getElementById('loginContent').style.display = 'block';
+              document.getElementById('signupContent').style.display = 'none';
+              document.getElementById('videoContent').style.display = 'none';
+          }
+
+          function showSignup() {
+              document.getElementById('mainContent').style.display = 'none';
+              document.getElementById('loginContent').style.display = 'none';
+              document.getElementById('signupContent').style.display = 'block';
+              document.getElementById('videoContent').style.display = 'none';
+          }
+
+          function showVideo() {
+              // Your code to show the video content
+              document.getElementById('mainContent').style.display = 'none';
+              document.getElementById('loginContent').style.display = 'none';
+              document.getElementById('signupContent').style.display = 'none';
+              document.getElementById('videoContent').style.display = 'block';
+          }
+      </script>
+  </body>
+  </html>
