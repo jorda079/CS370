@@ -11,6 +11,7 @@ def get_db():
     #return psycopg2.connect(host="localhost", dbname="authme" , user="loki", password="4prez")
     return sqlite3.connect("database.db")
 
+# create user table
 def create_user_table():
     query = """
             CREATE TABLE IF NOT EXISTS "users" (
@@ -27,7 +28,7 @@ def create_user_table():
         """
     return query
 
-
+# create quetionnaire talbe
 def create_questionnaire_table():
     query = """
             CREATE TABLE IF NOT EXISTS "questionnaire" (
@@ -41,14 +42,13 @@ def create_questionnaire_table():
     """
     return query
 
-
+# get a database instance
 def get_db_instance():  
     db  = get_db()
     cur  = db.cursor( )
 
     return db, cur
 
-"git"
 if __name__ == "__main__":
     db, cur = get_db_instance()
 
