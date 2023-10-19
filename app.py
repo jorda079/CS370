@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request, redirect, url_for, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import jwt
+import auth
 
 import sys
 import datetime
@@ -26,6 +27,9 @@ ERROR_MSG = "Ooops.. Didn't work!"
 app = Flask(__name__)
 #add in flask json
 FlaskJSON(app)
+
+# register auth.py file
+app.register_blueprint(auth)
 
 #g is flask for a global var storage 
 def init_new_env():
@@ -90,20 +94,6 @@ def exec_proc(proc_name):
         return json_response(status_=500 ,data=ERROR_MSG)
 
     return resp
-
-@app.route("/signup", methods=['GET', 'POST'])
-def signup():
-    # data will be available from POST submitted by the form
-    if request.method == "POST":
-        email = request.form['email']
-        # email2 = request.form['email2']
-        username = request.form['username']
-        password = request.form['password']
-        # password2 = request.form['password2']
-
-        db, cur = get_db_instance()
-        cur.execute("INSERT INTO users (email, name, password) VALUES (?, ?, ?,)",(email, username, password))
-        db.commit()
 
 
 if __name__ == '__main__':
