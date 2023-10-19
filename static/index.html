@@ -124,7 +124,7 @@
       <!-- Log In Content -->
       <div class="login-container" id="loginContent" style="display: none">
           <div class="login">
-              <form id="f" action="Login.php" method="post">
+              <form id="f" action="{{url_for(auth.registration)}}" method="post">
                   <label for="username">Username:</label>
                   <br>
                   <input type="text" id="username" class="text" name="username">
@@ -155,7 +155,7 @@
       <!-- Sign Up Content -->
       <div class="signup-container" id="signupContent" style="display: none">
           <div class="login">
-              <form id="f" action="Signup.php" method="post">
+              <form id="f" method="post">
                   <label for="email">Email:</label>
                   <br>
                   <input type="text" id="email" class="text" name="email">
