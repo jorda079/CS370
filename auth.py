@@ -4,7 +4,7 @@ from db_con import get_db_instance, get_db
 
 auth = Blueprint('auth', __name__, static_folder='static', template_folder='templates', url_prefix='')
 
-# sign up for backend
+# user authentication: sign-up
 @auth.route("/signup", methods=['GET', 'POST'])
 def registration():
     db, cur = get_db_instance()
@@ -33,5 +33,16 @@ def registration():
     # user is already logged in
     else:
         print("You are alredy logged in.")
-    return render_template("index.html")
+    return render_template("/static/index.html")
+
+# user authentication: login
+@auth.route("/login", methods=['GET', 'POST'])
+def login():
+    db, cur = get_db_instance()
+
+# user authentication: user profile
+@auth.route("/profile", methods=['GET', 'POST'])
+def profile():
+    db, cur = get_db_instance()
+
 
