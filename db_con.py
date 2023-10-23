@@ -33,12 +33,11 @@ def create_questionnaire_table():
     query = """
             CREATE TABLE IF NOT EXISTS "questionnaire" (
             _id INTEGER PRIMARY KEY AUTOINCREMENT,
-            answer_1 boolean DEFAULT 0,
-            answer_2 boolean DEFAULT 0,
-            answer_3 boolean DEFAULT 0,
-            answer_4 boolean DEFAULT 0,
-            answer_5 boolean DEFAULT 0
-            )
+            answer_1 TEXT,
+            answer_2 TEXT,
+            answer_3 TEXT,
+            comments TEXT
+    );
     """
     return query
 
