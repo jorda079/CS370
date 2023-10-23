@@ -1,84 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="profile.css">
-    <title>User Profile</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>User Profile</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<style>
+		body {
+			background: #913d05;
+			color: #444;
+			font-family: "Open Sans", sans-serif;
+			line-height: 1.6;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.navbar-collapse {
+			flex-grow: unset !important;
+		}
+		.nav-link {
+			color: #222;
+		}
+		.main {
+			margin:auto;
+			width:60%;
+			padding:10px;
+            text-align:center;
+		}
+		.main h1 {
+			color: white;
+			text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+			font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+		}
+		.main ul {
+			color: white;
+			text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+		}
+      .contact-form {
+    margin: 50px auto;
+    max-width: 700px; /* Increased width */
+    padding: 50px; /* Increased padding */
+    background-color: rgba(230, 230, 230, 0.8);
+    border-top-left-radius: 50% 20%;
+    border-top-right-radius: 50% 20%;
+    border-bottom-left-radius: 20% 50%;
+    border-bottom-right-radius: 20% 50%;
+}
+
+        .form-label {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            display: block;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.1) inset;
+        }
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        .submit-button:hover {
+            background-color: #3e8e41;
+        }
+        .success-message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            border-radius: 5px;
+            color: #155724;
+            display: none;
+        }
+        .newsletter-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .newsletter-btn:hover {
+    background-color: #3e8e41;
+}
+		
+	.contact-form h2{
+			margin-left: 75px;
+		}
+
+	</style>
 </head>
 <body>
-    <div class="container">
-        <div class="main">
-            <div class="topbar">
-                <a href="#"><img height="40" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
-                <a class="nav-link" href="Login.html">Logout</a>
-                <a class="nav-link" href="Web App main.html">Home</a>
-                <a href="">Connections</a>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mt-1">
-                    <div class="card text-center sidebar">
-                        <div class="card-body">
-                            <img src="image.jpg" class="rounded-circle" width="150">
-                            <div class="mt-3">
-                                <h3> User Name</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8 mt-1">
-                    <div class="card mb-3 content">
-                        <h1 class="m-3 pt-3">About Me</h1>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h3>Full Name</h3>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    User Name 
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h3>Email</h3>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    abc@gmail.com
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h3>Phone Number</h3>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    (123)-456-7890
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h3>Age</h3>
-                                </div>
-                                <div class="col-md-9 text-secondary">
-                                    Age
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3 content">
-                        <h1 class="m-3">Your Liked Videos</h1>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h5>Videos</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a href="#"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="Web App main.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="User Profile.html">User Profile</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Profile Reactions.html">Profile Reactions</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Inbox.html">Inbox</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Find Match.html">Find a Match</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Login.html">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="Signup.html">Sign Up</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="main">
+		<h1>User Profile</h1>
+		<ul style="list-style-type:none; padding-left:0px;">
+            <img src="image.jpg" class="rounded-circle" width="150">
+		</ul>
+		
+		<div class="contact-form">
+			<form action="#" method="post">
+				<label for="name" class="form-label">Name</label>
+				<input type="text" id="name" name="name" class="form-control" required>
+				<label for="email" class="form-label">Email</label>
+				<input type="email" id="email" name="email" class="form-control" required>
+                <label for="phone" class="form-label">Phone</label>
+				<input type="phone" id="phone" name="phone" class="form-control" required>
+				<label for="message" class="form-label">Introduce Yourself</label>
+				<textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+				<button type="save" class="save-button">Save</button>
+			</form>
+			<div class="success-message"></div>
+		</div>
+	</div>
+
+	<a href="#" class="btn btn-primary btn-lg">Sign up for our newsletter</a>
+
+
+	<div style="width: 100%; height: 400px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30769.134890752926!2d-122.40787918762578!3d37.7749294676469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7f45c0bb29df%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sph!4v1551788701685" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
     </div>
-</body>
-</html>
+</div>
