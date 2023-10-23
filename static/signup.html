@@ -85,14 +85,14 @@
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a href="Web App main.html"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
+			<a href="JAR_project.html"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="Web App main.html">Home</a>
+						<a class="nav-link" href="JAR_project.html">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="User Profile.html">User Profile</a>
+						<a class="nav-link" href="Services.html">User Profile</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="About Us.html">Profile Reactions</a>
@@ -116,6 +116,7 @@
     <div class="main">
         <div class="login">
 			<form id="f" action="Signup.php" method="post">
+				<h2><center>Signup</center></h2>
 				<label for="email">Email:</label>
 				<br>
 				<input type="text" id="email" class="text" name="email">
@@ -167,7 +168,38 @@
 					<span>Passwords Don't Match</span>
                     <br>
 				</div>
+				<label for="question1" class="form-label">I prefer to socialize with other people at public events:</label>
+			<select id="question1" name="question1" class="form-control" required>
+				<option value="" selected disabled>Please select an option</option>
+				<option value="Strongly agree">Strongly Agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Neutral">Neutral</option>
+				<option value="Disagree">Disagree</option>
+				<option value="Strongly disagree">Strongly Disagree</option>
+			</select>
+			<label for="question2" class="form-label">Owning pets is a good thing:</label>
+			<select id="question2" name="question2" class="form-control" required>
+				<option value="" selected disabled>Please select an option</option>
+				<option value="Strongly agree">Strongly Agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Neutral">Neutral</option>
+				<option value="Disagree">Disagree</option>
+				<option value="Strongly disagree">Strongly Disagree</option>
+			</select>
+			<label for="question3" class="form-label">I am a good conversationalist:</label>
+			<select id="question3" name="question3" class="form-control" required>
+				<option value="" selected disabled>Please select an option</option>
+				<option value="Strongly agree">Strongly Agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Neutral">Neutral</option>
+				<option value="Disagree">Disagree</option>
+				<option value="Strongly disagree">Strongly Disagree</option>
+			</select>
+			<label for="message" class="form-label">Additional comments</label>
+			<textarea id="message" name="message" class="form-control" rows="5"></textarea>
+			<button type="submit" class="submit-button">Submit</button>
                 <br>
+				<br>
 				<input type="submit" value="Create Account" class="login_button">
 				<hr>
 				<a href="Login.html">Already Have An Account</a>
