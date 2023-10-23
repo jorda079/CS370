@@ -16,6 +16,10 @@ def registration():
             # email2 = request.form['email2']
             username = request.form['username']
             password = request.form['password']
+            question1 = request.form['question1']
+            question2 = request.form['question2']
+            question3 = request.form['question3']
+            message = request.form['message']
             # password2 = request.form['password2']
 
             # check both email & password already exist
@@ -25,7 +29,8 @@ def registration():
                 return render_template("error.html")  # duplicated email & password
             else:
                 if not data:
-                    cur.execute(cur.execute("INSERT INTO users (email, name, password) VALUES (?, ?, ?,)", (email, username, password)))
+                    cur.execute("INSERT INTO users (email, name, password) VALUES (?, ?, ?)", (email, username, password))
+                    cur.execute("INSERT INTO questionnaire (answer_1, answer_2, answer_3, comments) VALUES (?, ?, ?, ?)", (question1, question2, question3, message))
                     db.commit()
                     db.close()
                 return redirect(url_for('login.html'))
@@ -33,7 +38,8 @@ def registration():
     # user is already logged in
     else:
         print("You are alredy logged in.")
-    return render_template("/static/index.html")
+        return redirect(url_for('index.html'))
+    return render_template("/static/signup.html")
 
 # user authentication: login
 @auth.route("/login", methods=['GET', 'POST'])
