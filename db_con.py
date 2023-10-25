@@ -11,35 +11,6 @@ def get_db():
     #return psycopg2.connect(host="localhost", dbname="authme" , user="loki", password="4prez")
     return sqlite3.connect("database.db")
 
-# create user table
-def create_user_table():
-    query = """
-            CREATE TABLE IF NOT EXISTS "users" (
-            id INTEGER PRIMARY KEY,
-            name TEXT,
-            password TEXT,
-            email TEXT,
-            address TEXT,
-            phone TEXT,
-            gender TEXT,
-            birth DATE, 
-            introduce TEXT
-        );
-        """
-    return query
-
-# create quetionnaire talbe
-def create_questionnaire_table():
-    query = """
-            CREATE TABLE IF NOT EXISTS "questionnaire" (
-            _id INTEGER PRIMARY KEY AUTOINCREMENT,
-            answer_1 TEXT,
-            answer_2 TEXT,
-            answer_3 TEXT,
-            comments TEXT
-    );
-    """
-    return query
 
 # get a database instance
 def get_db_instance():  
@@ -54,8 +25,6 @@ if __name__ == "__main__":
     cur.execute("select * from users")
     for r in cur.fetchall():
         print(r)
-    cur.execute(create_user_table())
-    cur.execute(create_questionnaire_table())
     cur.execute("create table music ( song_name varchar(255), rating int);")
     db.commit()
 
