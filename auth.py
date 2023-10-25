@@ -45,10 +45,12 @@ def registration():
 @auth.route("/login", methods=['GET', 'POST'])
 def login():
     db, cur = get_db_instance()
+    render_template("/static/login.html")
 
 # user authentication: user profile
 @auth.route("/profile", methods=['GET', 'POST'])
 def profile():
     db, cur = get_db_instance()
+    render_template("/static/profile.html")
 
 
