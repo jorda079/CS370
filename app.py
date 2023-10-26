@@ -9,7 +9,7 @@ import bcrypt
 import traceback
 
 # ! temporarily except egg.py to avoid error
-# from tools.eeg import get_head_band_sensor_object
+from tools.eeg import get_head_band_sensor_object
 
 
 from db_con import get_db_instance, get_db
@@ -23,6 +23,18 @@ from tools.logging import logger
 
 ERROR_MSG = "Ooops.. Didn't work!"
 
+
+# Global custom data type to store username and brainwave data
+user_data = {
+    # Store current username 
+    'username': '',
+    # Store brainwave data for each respective movie
+    'movie_1_data': [], 
+    'movie_2_data': [],
+    'movie_3_data': [],
+    'movie_4_data': [],
+    'movie_5_data': []
+}
 
 #Create our app
 app = Flask(__name__)
@@ -98,5 +110,6 @@ def exec_proc(proc_name):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    # Debug mode set to true while testing
+    app.run(host='0.0.0.0', port=80, debug=True)
 

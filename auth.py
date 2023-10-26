@@ -53,4 +53,13 @@ def profile():
     db, cur = get_db_instance()
     render_template("/static/profile.html")
 
+# Requests current username
+def request_username():
+    #db, cur = get_db_instance()
 
+    return "test_username"
+    
+    # Need to request current username from database. 
+    # We can make a global variable to store the user_id
+    # while they are logged in. Then request info from 
+    # database referencing the user_id.

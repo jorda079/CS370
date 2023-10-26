@@ -4,7 +4,7 @@ from neurosdk.cmn_types import *
 
 def handle_request():
     if g.hb == None:
-        return ["Data Flowing"]
+        return ["Data Stopped"]
 
     g.hb.exec_command(SensorCommand.CommandStopSignal)
-    return ["Data Flowing"]
+    return ["Data Stopped"]
