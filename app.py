@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import jwt
-from auth import auth
+from auth import auth as auth_blueprint
 
 import sys
 import datetime
@@ -9,7 +9,7 @@ import bcrypt
 import traceback
 
 # ! temporarily except egg.py to avoid error
-from tools.eeg import get_head_band_sensor_object
+# from tools.eeg import get_head_band_sensor_object
 
 
 from db_con import get_db_instance, get_db
@@ -42,7 +42,7 @@ app = Flask(__name__)
 FlaskJSON(app)
 
 # register auth.py file
-app.register_blueprint(auth)
+app.register_blueprint(auth_blueprint)
 
 #g is flask for a global var storage 
 def init_new_env():

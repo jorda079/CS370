@@ -1,58 +1,55 @@
-from flask import Blueprint, render_template,request, redirect, url_for, g, session
+from flask import Blueprint, render_template,request, redirect, url_for, g, session, flash
 from db_con import get_db_instance, get_db
 
-
-auth = Blueprint('auth', __name__, static_folder='static', template_folder='templates', url_prefix='')
+auth = Blueprint('auth', __name__)
 
 # user authentication: sign-up
-@auth.route("/signup", methods=['GET', 'POST'])
-def registration():
+@auth.route('/signup', methods=['GET', 'POST'])
+def signup():
+    return render_template('signup.html')
+
+# code to validate and add user to database goes here
+@auth.route('/signup', methods=['GET', 'POST'])
+def signup_post():
     db, cur = get_db_instance()
-    # user is not currently logged in
-    if 'loggged_in' not in session:
-        # data will be available from POST submitted by the form
-        if request.method == "POST":
-            email = request.form['email']
-            # email2 = request.form['email2']
-            username = request.form['username']
-            password = request.form['password']
-            question1 = request.form['question1']
-            question2 = request.form['question2']
-            question3 = request.form['question3']
-            message = request.form['message']
-            # password2 = request.form['password2']
+    email = request.form.get('email')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    question1 = request.form.get('question1')
+    question2 = request.form.get('question2')
+    question3 = request.form.get('question3')
+    message = request.form.get("message")    
 
-            # check both email & password already exist
-            cur.execute(f"SELECT * from users WHERE email='{email}' AND password=''{password};")
-            data = cur.fetchone()
-            if data:
-                return render_template("error.html")  # duplicated email & password
-            else:
-                if not data:
-                    cur.execute("INSERT INTO users (email, name, password) VALUES (?, ?, ?)", (email, username, password))
-                    cur.execute("INSERT INTO questionnaire (answer_1, answer_2, answer_3, comments) VALUES (?, ?, ?, ?)", (question1, question2, question3, message))
-                    db.commit()
-                    db.close()
-                return redirect(url_for('login.html'))
-
-    # user is already logged in
-    else:
-        print("You are alredy logged in.")
-        return redirect(url_for('index.html'))
-    return render_template("/static/signup.html")
+    cur.execute("SELECT email FROM users WHERE email=(?)", email)
+    user = cur.fetchone()
+    # if returns a user, then the email already exists in database
+    if user:
+        flash("Email address already exists")
+        return redirect(url_for('auth.signup'))
+    
+    # add the new user to the database
+    cur.execute("INSERT INTO users (email, username, password) VALUES (?, ?, ?)", (email, username, password))
+    
+    # add the new questionnaire data to the database
+    cur.execute("INSERT INTO questionnaire (answer_1, answer_2, answer_3, comments) VALUES (?, ?, ?, ?)",(question1, question2, question3, message))
+    db.commit()
+    db.close()
+    return redirect(url_for('auth.login'))    
+    
 
 # user authentication: login
-@auth.route("/login", methods=['GET', 'POST'])
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     db, cur = get_db_instance()
-    render_template("/static/login.html")
+    return render_template("login.html")
 
 # user authentication: user profile
-@auth.route("/profile", methods=['GET', 'POST'])
+@auth.route('/profile', methods=['GET', 'POST'])
 def profile():
     db, cur = get_db_instance()
-    render_template("/static/profile.html")
+    return render_template("profile.html")
 
+@auth.route('/logout')
 # Requests current username
 def request_username():
     #db, cur = get_db_instance()
