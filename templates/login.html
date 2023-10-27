@@ -89,23 +89,23 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="Web App main.html">Home</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="profile.html">User Profile</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="Inbox.html">Inbox</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="index.html">Find a Match</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="Login.html">Login</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="Signup.html">Sign Up</a>
-					</li>
+                        <a class="nav-link" href="{{ url_for('main') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.profile') }}">User Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('inbox') }}">Inbox</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Find a Match</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.signup') }}">Sign Up</a>
+                    </li>
 				</ul>
 			</div>
 		</nav>
