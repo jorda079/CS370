@@ -37,13 +37,29 @@ def signup_post():
     return redirect(url_for('auth.login'))    
     
 
-# user authentication: login
+# user authentication: login method
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    db, cur = get_db_instance()
     return render_template("login.html")
 
-# user authentication: user profile
+# login code goes here
+@auth.route('/login', methods=['GET', 'POST'])
+def login_post():
+    db, cur = get_db_instance()
+    username = request.form.get('username')
+    password = request.form.get('password')
+    remember = True if request.form.get('remember') else False
+
+    cur.execute("SELECT username FROM users WHERE username=(?)", username)
+    user = cur.fetchone()
+
+    # check if the user actaully exsits
+    if not user or user[1] != password:
+        flash("Please check your login details and try again.")
+        return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
+    return redirect(url_for("auth.profile"))
+
+# user authentication: user profile mtethod
 @auth.route('/profile', methods=['GET', 'POST'])
 def profile():
     db, cur = get_db_instance()
