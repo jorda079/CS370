@@ -9,7 +9,7 @@ import bcrypt
 import traceback
 
 # ! temporarily except egg.py to avoid error
-# from tools.eeg import get_head_band_sensor_object
+from tools.eeg import get_head_band_sensor_object
 
 
 from db_con import get_db_instance, get_db
