@@ -66,6 +66,10 @@ def profile():
     return render_template("profile.html")
 
 @auth.route('/logout')
+def logout():
+
+    return 
+
 # Requests current username
 def request_username():
     #db, cur = get_db_instance()
