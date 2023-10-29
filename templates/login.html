@@ -133,9 +133,10 @@
 					<input type="checkbox" id="Remember">
 					<label for="Remember">Remember Me</label>
 				</div>
-				<input type="submit" value="Login" class="login_button">
+				<!-- <input type="submit" value="Login" class="login_button"> -->
+				<button class="login_button">Login</button>
 				<hr>
-				<a href="Signup.html">Sign-Up</a>
+				<a href="{{ url_for('auth.signup') }}">Sign-Up</a>
 			</form>
         </div>
 	</div>

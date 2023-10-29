@@ -194,12 +194,13 @@
 			</select>
 			<label for="message" class="form-label">Additional comments</label>
 			<textarea id="message" name="message" class="form-control" rows="5"></textarea>
-			<button type="submit" class="submit-button">Submit</button>
+			<!-- <button type="submit" class="submit-button">Submit</button> -->
                 <br>
 				<br>
-				<input type="submit" value="Create Account" class="login_button">
+				<!-- <input type="submit" value="Create Account" class="login_button">-->
+				<button class="login_button">Create Account</button>
 				<hr>
-				<a href="login.html">Already Have An Account</a>
+				<a href="{{ url_for('auth.login') }}">Already Have An Account</a>
 			</form>
         </div>
 	</div>
