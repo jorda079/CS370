@@ -41,6 +41,8 @@ app = Flask(__name__)
 #add in flask json
 FlaskJSON(app)
 
+app.secret_key = 'secret key for session'
+
 # register auth.py file
 app.register_blueprint(auth_blueprint)
 
