@@ -4,12 +4,12 @@ from db_con import get_db_instance, get_db
 auth = Blueprint('auth', __name__)
 
 # user authentication: sign-up
-@auth.route('/signup', methods=['GET', 'POST'])
+@auth.route('/signup')
 def signup():
     return render_template('signup.html')
 
 # code to validate and add user to database goes here
-@auth.route('/signup', methods=['GET', 'POST'])
+@auth.route('/signup', methods=['POST'])
 def signup_post():
     db, cur = get_db_instance()
     email = request.form.get('email')
@@ -28,7 +28,7 @@ def signup_post():
         return redirect(url_for('auth.signup'))
     
     # add the new user to the database
-    cur.execute("INSERT INTO users (email, username, password) VALUES (?, ?, ?)", (email, username, password))
+    cur.execute("INSERT INTO users (email, name, password) VALUES (?, ?, ?)", (email, username, password))
     
     # add the new questionnaire data to the database
     cur.execute("INSERT INTO questionnaire (answer_1, answer_2, answer_3, comments) VALUES (?, ?, ?, ?)",(question1, question2, question3, message))
@@ -38,24 +38,25 @@ def signup_post():
     
 
 # user authentication: login method
-@auth.route('/login', methods=['GET', 'POST'])
+@auth.route('/login')
 def login():
     return render_template("login.html")
 
 # login code goes here
-@auth.route('/login', methods=['GET', 'POST'])
+@auth.route('/login', methods=['POST'])
 def login_post():
     db, cur = get_db_instance()
     username = request.form.get('username')
     password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
+    # remember = True if request.form.get('remember') else False
 
-    cur.execute("SELECT username FROM users WHERE username=(?)", username)
+    cur.execute("SELECT * FROM users WHERE name=(?)", username)
     user = cur.fetchone()
+    print(user)
 
     # check if the user actaully exsits
-    if not user or user[1] != password:
-        flash("Please check your login details and try again.")
+    if not user or str(password) != user[2]:
+        # flash("Please check your login details and try again.")
         return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
     return redirect(url_for("auth.profile"))
 
