@@ -148,14 +148,14 @@
 		<div class="contact-form">
 			<form action="/profile" method="POST">
 				<label for="name" class="form-label">Name</label>
-				<input type="text" id="name" name="name" class="form-control" required>
+				<input type="text" id="name" value="{{profile.name}}" name="name" class="form-control" disabled/>
 				<label for="email" class="form-label">Email</label>
-				<input type="email" id="email" name="email" class="form-control" required>
+				<input type="email" id="email" value="{{profile.email}}" name="email" class="form-control" disabled/>
                 <label for="phone" class="form-label">Phone</label>
-				<input type="phone" id="phone" name="phone" class="form-control" required>
+				<input type="phone" id="phone" value="{{profile.phone}}" name="phone" class="form-control" disabled/>
 				<label for="message" class="form-label">Introduce Yourself</label>
-				<textarea id="message" name="message" class="form-control" rows="5" required></textarea>
-				<button type="save" class="save-button">Save</button>
+				<textarea id="message" name="message" class="form-control" rows="5" disabled>{{profile.introduce}}</textarea>
+				<!-- <button type="save" class="save-button">Save</button> -->
 			</form>
 			<div class="success-message"></div>
 		</div>
