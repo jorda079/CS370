@@ -7,7 +7,7 @@ auth = Blueprint('auth', __name__)
 @auth.route('/signup')
 def signup():
     if 'name' in session:
-        return redirect(url_for("auth.profile"))
+        return redirect(url_for("auth.profile", username=session['name']))
     return render_template('signup.html')
 
 # code to validate and add user to database goes here
@@ -27,7 +27,7 @@ def signup_post():
     # if returns a user, then the email already exists in database
     if user:
         flash("Email address already exists")
-        return redirect(url_for('auth.signup'))
+        return redirect(url_for('auth.signup', username=session['name']))
     
     # add the new user to the database
     cur.execute("INSERT INTO users (email, name, password) VALUES (?, ?, ?)", (email, username, password))
@@ -43,7 +43,7 @@ def signup_post():
 @auth.route('/login')
 def login():
     if 'name' in session:
-        return redirect(url_for("auth.profile"))
+        return redirect(url_for("auth.profile", username=session['name']))
     return render_template("login.html")
 
 # login code goes here
@@ -62,13 +62,30 @@ def login_post():
         # flash("Please check your login details and try again.")
         return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
     session['name'] = user[1]   # put username in to session 
-    return redirect(url_for("auth.profile"))
+    return redirect(url_for("auth.profile", username=session['name']))
 
 # user authentication: user profile mtethod
 @auth.route('/profile', methods=['GET', 'POST'])
 def profile():
     db, cur = get_db_instance()
-    return render_template("profile.html")
+    if 'name' not in session:
+        flash("You should login first")
+        return redirect(url_for("auth.login"))
+    
+    username = session['name']
+    cur.execute("SELECT * FROM users WHERE name=(?)", username)
+    user = cur.fetchone()
+    profile={
+    'name': user[1],
+    'email': user[3],
+    'address': user[4],
+    'phone': user[5],
+    'gender':user[6],
+    'birth': user[7],
+    'introduce': user[8]
+    }
+
+    return render_template("profile.html", profile=profile)
 
 # # check user already logged in
 # @auth.before_request
