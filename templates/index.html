@@ -136,15 +136,41 @@
               console.log(response);});
       }
 
+      // Calls the stop_movie file
+      function record_movie_data(){
+          $.post("/open_api/hb_record", { "data":"somedata", "any":"data"},
+              function(data, textStatus) {
+                  //this gets called when browser receives response from server
+                  console.log(data);
+              }, "json").fail( function(response) {
+                  //this gets called if the server throws an error
+                  console.log("error");
+              console.log(response);});
+      }
+
+      // Calls the stop_movie file
+      function store_movie_data(){
+          $.post("/open_api/hb_store", { "data":"somedata", "any":"data"},
+              function(data, textStatus) {
+                  //this gets called when browser receives response from server
+                  console.log(data);
+              }, "json").fail( function(response) {
+                  //this gets called if the server throws an error
+                  console.log("error");
+              console.log(response);});
+      }
+
       // Event listeners for when the movie is played, as well as when it is paused or ends.
       video.addEventListener("play", (event) => {
           play_control_movie();
+          record_movie_data();
       });
       video.addEventListener("pause", (event) => {
           stop_control_movie();
       });
       video.addEventListener("ended", (event) => {
           stop_control_movie();
+          store_movie_data();
       });
     </script>
 </body>

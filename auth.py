@@ -99,11 +99,8 @@ def logout():
 
 
 # Requests current username
+@auth.route('/index')
 def request_username():
-    #db, cur = get_db_instance()
-    return session['username']
-    
-    # Need to request current username from database. 
-    # We can make a global variable to store the user_id
-    # while they are logged in. Then request info from 
-    # database referencing the user_id.
+    # Currently has errors when calling in hb_record.py
+    #return session['username']
+    return "test_username"
