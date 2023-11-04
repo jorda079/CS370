@@ -17,21 +17,26 @@ def signup_post():
     email = request.form.get('email')
     username = request.form.get('username')
     password = request.form.get('password')
+    gender = request.form.get('gender')
+    birthdate = request.form.get('birthdate')
+    address = request.form.get('address')
+    phone = request.form.get('phone')
+    introduce = request.form.get('introduce')
     question1 = request.form.get('question1')
     question2 = request.form.get('question2')
     question3 = request.form.get('question3')
     message = request.form.get("message")    
 
     # find the user in local database with input 
-    cur.execute("SELECT email FROM users WHERE email=(?)", email)
+    cur.execute("SELECT * FROM users WHERE email=(?)", [email])
     user = cur.fetchone()
     if user:
-        flash("Email address already exists")
+        flash("Email already exists, please use different email.")
         return redirect(url_for('auth.signup', username=session['name']))
     
     # add new user into database with questionnarie answer
     # save database using commit()
-    cur.execute("INSERT INTO users (email, name, password) VALUES (?, ?, ?)", (email, username, password))
+    cur.execute("INSERT INTO users (name, password, email, address, phone, gender, birth, introduce) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (username, password, email, address, phone, gender, birthdate, introduce))
     cur.execute("INSERT INTO questionnaire (answer_1, answer_2, answer_3, comments) VALUES (?, ?, ?, ?)",(question1, question2, question3, message))
     db.commit()
     db.close()
@@ -50,12 +55,12 @@ def login():
 def login_post():
     db, cur = get_db_instance()
     # get input from html files
-    username = request.form.get('username')
+    email = request.form.get('email')
     password = request.form.get('password')
     # remember = True if request.form.get('remember') else False
 
     # find the user in local database with input 
-    cur.execute("SELECT * FROM users WHERE name=(?)", username)
+    cur.execute("SELECT * FROM users WHERE email=(?)", [email])
     user = cur.fetchone()
 
     # check if the user actaully exsits & check password
@@ -77,7 +82,7 @@ def profile(username=None):
     
     # from session, call user information to profile 
     username = session['name']
-    cur.execute("SELECT * FROM users WHERE name=(?)", username)
+    cur.execute("SELECT * FROM users WHERE name=(?)", [username])
     user = cur.fetchone()
     profile={
     'name': user[1],
@@ -102,5 +107,5 @@ def logout():
 @auth.route('/index')
 def request_username():
     # Currently has errors when calling in hb_record.py
-    #return session['username']
+    # return session['username']
     return "test_username"
