@@ -95,9 +95,6 @@
                         <a class="nav-link" href="{{ url_for('auth.profile') }}">User Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('inbox') }}">Inbox</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('index') }}">Find a Match</a>
                     </li>
                     <li class="nav-item">
@@ -116,9 +113,9 @@
     <div class="main">
         <div class="login">
 			<form id="f" action="/login" method="POST">
-				<label for="username">Username:</label>
+				<label for="email">Email:</label>
 				<br>
-				<input type="text" id="username" class="text" name="username">
+				<input type="text" id="email" class="text" name="email">
 				<br>
 				<div id="user_empty" style="display:none;" class="error">
 					<span>Username required</span>
@@ -147,7 +144,7 @@
 <script>
     document.getElementById("f").addEventListener("submit", function(e) {
 		//e.preventDefault();
-		let username = document.getElementById("username");
+		let email = document.getElementById("email");
 		let password = document.getElementById("password");
 
 
