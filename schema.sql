@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
             address TEXT,
             phone TEXT,
             gender TEXT,
-            birth DATE, 
+            birth TEXT, 
             introduce TEXT
 );
 
