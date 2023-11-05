@@ -44,10 +44,10 @@
     max-width: 700px; /* Increased width */
     padding: 50px; /* Increased padding */
     background-color: rgba(230, 230, 230, 0.8);
-    border-top-left-radius: 50% 20%;
-    border-top-right-radius: 50% 20%;
-    border-bottom-left-radius: 20% 50%;
-    border-bottom-right-radius: 20% 50%;
+    border-top-left-radius: 70% 20%;
+    border-top-right-radius: 70% 20%;
+    border-bottom-left-radius: 20% 20%;
+    border-bottom-right-radius: 20% 20%;
 }
 
         .form-label {
@@ -146,10 +146,16 @@
 			<form action="/profile" method="post">
 				<label for="name" class="form-label">Name</label>
 				<input type="text" id="name" value="{{profile.name}}" name="name" class="form-control" disabled/>
+                <label for="name" class="form-label">Age</label>
+				<input type="text" id="name" value="{{profile.age}}" name="age" class="form-control" disabled/>
+                <label for="name" class="form-label">Gender</label>
+				<input type="text" id="name" value="{{profile.gender}}" name="gender" class="form-control" disabled/>
 				<label for="email" class="form-label">Email</label>
 				<input type="email" id="email" value="{{profile.email}}" name="email" class="form-control" disabled/>
                 <label for="phone" class="form-label">Phone</label>
 				<input type="phone" id="phone" value="{{profile.phone}}" name="phone" class="form-control" disabled/>
+                <label for="name" class="form-label">Address</label>
+				<input type="text" id="name" value="{{profile.address}}" name="address" class="form-control" disabled/>
 				<label for="message" class="form-label">Introduce Yourself</label>
 				<textarea id="message" name="message" class="form-control" rows="5" disabled>{{profile.introduce}}</textarea>
 				<!-- <button type="save" class="save-button">Save</button> -->
