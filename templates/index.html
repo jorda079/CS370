@@ -95,10 +95,23 @@
             </ol>
         </div>
         <div class="video-container" id="videoContainer">
-            <video id="video" controls>
-                <source src="/static/movie.mp4" type="video/mp4">
+            <video id="video1" controls>
+                <source src="/static/movie1.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <video id="video2" controls>
+                <source src="/static/movie2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video id="video3" controls>
+                <source src="/static/movie3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <style>
+                video {
+                    display: none;
+                }
+            </style>
         </div>
     </section>
 
@@ -108,6 +121,35 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" 
 		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
+        // Fetches all the video tags.
+        const videos = [
+            document.getElementById('video1'),
+            document.getElementById('video2'),
+            document.getElementById('video3')
+        ];
+        // Variable to hold the index of all the videos.
+        let currentVideoIndex = 0;
+        // Boolean to see if the user data has been created.
+        let userDataCreated = false;
+
+        function playNextVideo() {
+            if (currentVideoIndex < videos.length) {
+                if (currentVideoIndex > 0) {
+                    // Hide the previous video and play current video
+                    videos[currentVideoIndex - 1].style.display = 'none';
+                    videos[currentVideoIndex].play();
+                }
+
+                // Show the current video
+                videos[currentVideoIndex].style.display = 'block';
+                // sendVideoIndexToPython(currentVideoIndex);
+                currentVideoIndex++;
+            } else {
+                // If the last movie finished, we save the file.
+                store_movie_data();
+                console.log(['All videos have been played.']);
+            }
+        }
 
         // Calls the play_movie file
         function play_control_movie(){
@@ -158,17 +200,27 @@
       }
 
       // Event listeners for when the movie is played, as well as when it is paused or ends.
-      video.addEventListener("play", (event) => {
-          play_control_movie();
-          record_movie_data();
-      });
-      video.addEventListener("pause", (event) => {
-          stop_control_movie();
-      });
-      video.addEventListener("ended", (event) => {
-          stop_control_movie();
-          store_movie_data();
-      });
+      videos.forEach((video, index) => {
+            video.addEventListener('ended', () => {
+                stop_control_movie();
+                playNextVideo();
+            });
+            video.addEventListener("pause", (event) => {
+                stop_control_movie();
+            });
+            video.addEventListener("play", (event) => {
+                // Start recording data for the current video
+                play_control_movie();
+                // Creates the user data variabel if it does not exist.
+                if(!userDataCreated){
+                    userDataCreated = true;
+                    record_movie_data();
+                }
+            });
+        });
+
+        // Show and play the first video
+        playNextVideo();
     </script>
 </body>
 </html>
