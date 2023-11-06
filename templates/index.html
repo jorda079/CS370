@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brainwave Capture</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background: #913d05;
-            color: #fff;
-            font-family: "Open Sans", sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Brainwave Capture</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="style.css">
+      <style>
+          body {
+              background: #913d05;
+              color: #fff;
+              font-family: "Open Sans", sans-serif;
+              line-height: 1.6;
+              margin: 0;
+              padding: 0;
+          }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #913d05;
-            opacity: 0.7;
-            z-index: -1;
-        }
+          .hero-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #913d05;
+              opacity: 0.7;
+              z-index: -1;
+          }
 
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: flex-start; /* Align content to the top */
-            justify-content: center;
-            position: relative;
-            flex-direction: column;
-        }
+          .hero-section {
+              min-height: 100vh;
+              display: flex;
+              align-items: flex-start; 
+              justify-content: center;
+              position: relative;
+              flex-direction: column;
+          }
 
-        .hero-section h1,
-        .hero-section p,
-        .hero-section ol {
-            text-align: left; /* Align text to the left */
-        }
+          .hero-section h1,
+          .hero-section p,
+          .hero-section ol {
+              text-align: left; 
+          }
 
-        .video-container {
-            margin-top: 20px;
-            max-width: 100%;
-        }
+          .video-container {
+              margin-top: 20px;
+              max-width: 100%;
+          }
 
-        .navbar {
-            text-align: left; /* Align navigation tabs to the left */
-        }
-    </style>
-</head>
+          .navbar {
+              text-align: left; 
+          }
+      </style>
+  </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a href="#"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=87cb94fb8eba00d717ddb0f0981e395e3236164488421736a6810c534d293c71&"></a>
+            <a href="#"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=8887cb94fb8eba00d717ddb0f0981e395e32361644421736a6810c534d293c71&"></a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto"> <!-- Changed ml-auto to mr-auto -->
                     <li class="nav-item active">
@@ -81,146 +81,66 @@
         </nav>
     </header>
 
-    <section class = "hero-section">
+    <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="container">
             <h1>Welcome to Brainwave Capture</h1>
             <p>Now we will capture your brainwaves while you watch this short video.</p>
             <h2>Instructions:</h2>
             <ol>
-                <li>Place the headband on your head.</li>
-                <li>The gold plates of the headband should be just on your forehead to scan your prefrontal cortex.</li>
-                <li>The prongs should be on the back of your head just on the base of your skull to scan for visual receptors.</li>
-                <li>Once you are ready, go ahead and press play.</li>
+              <li>Place the headband on your head.</li>
+              <li>The gold plates of the headband should be just on your forehead to scan your prefrontal cortex.</li>
+              <li>The prongs should be on the back of your head just on the base of your skull to scan for visual receptors.</li>
+              <li>Once you are ready, choose a video to watch. Once the video begins we will start collecting your brain activity.</li>
             </ol>
+            <!-- Buttons to trigger video playback -->
+            <div id="playButtons">
+                <button onclick="playVideo('movie1.mp4', 'Puppies')">Puppies</button>
+                <button onclick="playVideo('movie2.mp4', 'Anime')">Anime</button>
+                <button onclick="playVideo('movie3.mp4', 'Nature')">Nature</button>
+            </div>
         </div>
+        <!-- Video container for playing videos -->
         <div class="video-container" id="videoContainer">
-            <video id="video1" controls>
-                <source src="/static/movie1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video id="video2" controls>
-                <source src="/static/movie2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <video id="video3" controls>
-                <source src="/static/movie3.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <style>
-                video {
-                    display: none;
-                }
-            </style>
+            <!-- Video elements for each video (hidden by default) -->
+            <video id="Puppies" controls style="display: none;"></video>
+            <video id="Anime" controls style="display: none;"></video>
+            <video id="Nature" controls style="display: none;"></video>
         </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" 
-		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        // Fetches all the video tags.
-        const videos = [
-            document.getElementById('video1'),
-            document.getElementById('video2'),
-            document.getElementById('video3')
-        ];
-        // Variable to hold the index of all the videos.
-        let currentVideoIndex = 0;
-        // Boolean to see if the user data has been created.
-        let userDataCreated = false;
+        const playButtons = document.getElementById("playButtons");
+        const videoContainer = document.getElementById("videoContainer");
 
-        function playNextVideo() {
-            if (currentVideoIndex < videos.length) {
-                if (currentVideoIndex > 0) {
-                    // Hide the previous video and play current video
-                    videos[currentVideoIndex - 1].style.display = 'none';
-                    videos[currentVideoIndex].play();
-                }
+        function playVideo(videoSrc, videoTitle) {
+            // Hide the buttons
+            playButtons.style.display = "none";
 
-                // Show the current video
-                videos[currentVideoIndex].style.display = 'block';
-                // sendVideoIndexToPython(currentVideoIndex);
-                currentVideoIndex++;
-            } else {
-                // If the last movie finished, we save the file.
-                store_movie_data();
-                console.log(['All videos have been played.']);
-            }
+            // Show and play the selected video
+            const selectedVideo = document.getElementById(videoTitle);
+            selectedVideo.style.display = "block";
+            selectedVideo.src = videoSrc;
+            selectedVideo.play();
+
+            // Center the video container
+            videoContainer.style.display = "flex";
+            videoContainer.style.alignItems = "center";
+            videoContainer.style.justifyContent = "center";
         }
 
-        // Calls the play_movie file
-        function play_control_movie(){
-          $.post("/open_api/play_movie", { "data":"somedata", "any":"data"},
-              function(data, textStatus) {
-                  //this gets called when browser receives response from server
-                  console.log(data);
-              }, "json").fail( function(response) {
-                  //this gets called if the server throws an error
-                  console.log("error");
-              console.log(response);});
-      }
+        // Event listeners for when the video ends
+        const videos = [document.getElementById("Puppies"), document.getElementById("Anime"), document.getElementById("Nature")];
 
-      // Calls the stop_movie file
-      function stop_control_movie(){
-          $.post("/open_api/stop_movie", { "data":"somedata", "any":"data"},
-              function(data, textStatus) {
-                  //this gets called when browser receives response from server
-                  console.log(data);
-              }, "json").fail( function(response) {
-                  //this gets called if the server throws an error
-                  console.log("error");
-              console.log(response);});
-      }
-
-      // Calls the stop_movie file
-      function record_movie_data(){
-          $.post("/open_api/hb_record", { "data":"somedata", "any":"data"},
-              function(data, textStatus) {
-                  //this gets called when browser receives response from server
-                  console.log(data);
-              }, "json").fail( function(response) {
-                  //this gets called if the server throws an error
-                  console.log("error");
-              console.log(response);});
-      }
-
-      // Calls the stop_movie file
-      function store_movie_data(){
-          $.post("/open_api/hb_store", { "data":"somedata", "any":"data"},
-              function(data, textStatus) {
-                  //this gets called when browser receives response from server
-                  console.log(data);
-              }, "json").fail( function(response) {
-                  //this gets called if the server throws an error
-                  console.log("error");
-              console.log(response);});
-      }
-
-      // Event listeners for when the movie is played, as well as when it is paused or ends.
-      videos.forEach((video, index) => {
-            video.addEventListener('ended', () => {
-                stop_control_movie();
-                playNextVideo();
-            });
-            video.addEventListener("pause", (event) => {
-                stop_control_movie();
-            });
-            video.addEventListener("play", (event) => {
-                // Start recording data for the current video
-                play_control_movie();
-                // Creates the user data variabel if it does not exist.
-                if(!userDataCreated){
-                    userDataCreated = true;
-                    record_movie_data();
-                }
+        videos.forEach(video => {
+            video.addEventListener("ended", () => {
+                video.style.display = "none";
+                // Reset the video source to prevent auto-play when shown again
+                video.src = "";
+                // Show the buttons
+                playButtons.style.display = "block";
             });
         });
-
-        // Show and play the first video
-        playNextVideo();
     </script>
 </body>
 </html>
