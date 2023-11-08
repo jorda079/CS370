@@ -27,6 +27,7 @@ def signup_post():
     question3 = request.form.get('question3')
     message = request.form.get("message")    
 
+
     # find the user in local database with input 
     cur.execute("SELECT * FROM users WHERE email=(?)", [email])
     user = cur.fetchone()
@@ -36,7 +37,7 @@ def signup_post():
     
     # add new user into database with questionnarie answer
     # save database using commit()
-    cur.execute("INSERT INTO users (name, password, email, address, phone, gender, birth, introduce) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (username, password, email, address, phone, gender, birthdate, introduce))
+    cur.execute("INSERT INTO users (name, password, email, address, phone, gender, birth, introduce) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (username, password, email, address, phone, gender, str(birthdate), introduce))
     cur.execute("INSERT INTO questionnaire (answer_1, answer_2, answer_3, comments) VALUES (?, ?, ?, ?)",(question1, question2, question3, message))
     db.commit()
     db.close()
