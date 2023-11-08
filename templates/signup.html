@@ -116,7 +116,7 @@
 				<h2><center>Signup</center></h2>
 				<label for="email">Email:</label>
 				<br>
-				<input type="text" id="email" class="text" name="email">
+				<input type="text" id="email" class="text" name="email" required>
 				<br>
 				<div id="email_empty" style="display:none;" class="error">
 					<span>Email required</span>
@@ -124,7 +124,7 @@
 				</div>
 				<label for="username">Username:</label>
 				<br>
-				<input type="text" id="username" class="text" name="username">
+				<input type="text" id="username" class="text" name="username" required>
 				<br>
 				<div id="user_empty" style="display:none;" class="error">
 					<span>Username required</span>
@@ -133,7 +133,7 @@
 
 				<label for="password">Password:</label>
 				<br>
-				<input type="password" id="password" class="text" name="password">
+				<input type="password" id="password" class="text" name="password" required>
 				<div id="pass_empty" style="display:none;" class="error">
                     <br>
 					<span>Password required</span>
@@ -141,7 +141,7 @@
 				<br>
 				<label for="password2"> Confirm Password:</label>
 				<br>
-				<input type="password" id="password2" class="text" name="password2">
+				<input type="password" id="password2" class="text" name="password2" required>
 				<br>
 				<div id="pass2_empty" style="display:none;" class="error">
 					<span>Password Confirmation Required</span>
@@ -153,7 +153,7 @@
 				</div>
 				<label for="Gender"> Gender:</label>
 				<br>
-				<input type="gender" id="gender" class="text" name="gender">
+				<input type="gender" id="gender" class="text" name="gender" required>
 				<div id="gender_empty" style="display:none;" class="error">
 					<br>
 					<span>Gender required</span>
@@ -161,7 +161,7 @@
 				<br>
 				<label for="Birthdate">Birthdate:</label>
 				<br>
-				<input type="date" id="birthdate" class="date" name="birthdate">
+				<input type="date" id="birthdate" class="date" name="birthdate" required>
 				<div id="birthdate_empty" style="display:none;" class="error">
 					<br>
 					<span>Birthdate required</span>
@@ -169,7 +169,7 @@
 				<br>
 				<label for="Address">Address:</label>
 				<br>
-				<input type="text" id="address" class="text" name="address">
+				<input type="text" id="address" class="text" name="address" required>
 				<div id="address_empty" style="display:none;" class="error">
 					<br>
 					<span>Address required</span>
@@ -177,7 +177,7 @@
 				<br>
 				<label for="phone number">Phone Number:</label>
 				<br>
-				<input type="tel" id="phone" class="text" name="phone">
+				<input type="tel" id="phone" class="text" name="phone" required>
 				<div id="phone_empty" style="display:none;" class="error">
 					<br>
 					<span>Phone number required</span>
@@ -185,7 +185,7 @@
 				<br>
 				<label for="introduce">Introduce Yourself:</label>
 				<br>
-				<textarea id="introduce" class="textarea" name="introduce">Enter text here...</textarea>
+				<textarea id="introduce" class="textarea" name="introduce" placeholder="Please introduce yourself."></textarea>
 				<div id="introduce_empty" style="display:none;" class="error">
 					<br>
 					<span>Introduction required</span>
