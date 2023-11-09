@@ -107,6 +107,8 @@ def logout():
 # Requests current username
 @auth.route('/index')
 def request_username():
-    # Currently has errors when calling in hb_record.py
-    # return session['username']
+    # If the user name exists we return the name.
+    if 'name' in session:
+        return session['name']
+    # Otherwise we return a test username.
     return "test_username"

@@ -95,9 +95,9 @@
             </ol>
             <!-- Buttons to trigger video playback -->
             <div id="playButtons">
-                <button onclick="playVideo('movie1.mp4', 'Puppies')">Puppies</button>
-                <button onclick="playVideo('movie2.mp4', 'Anime')">Anime</button>
-                <button onclick="playVideo('movie3.mp4', 'Nature')">Nature</button>
+                <button onclick="playVideo('/static/movie1.mp4', 'Puppies')">Puppies</button>
+                <button onclick="playVideo('/static/movie2.mp4', 'Anime')">Anime</button>
+                <button onclick="playVideo('/static/movie3.mp4', 'Nature')">Nature</button>
             </div>
         </div>
         <!-- Video container for playing videos -->
@@ -120,9 +120,7 @@
         const videoContainer = document.getElementById("videoContainer");
 
         // Variables to check if videos have been played.
-        let puppiesVideoPlayed = false;
-        let animeVideoPlayed = false;
-        let natureVideoPlayed = false;
+        let puppiesVideoPlayed, animeVideoPlayed, natureVideoPlayed = false;
         // Boolean to see if the user data has been created.
         let userDataCreated = false;
 
@@ -141,13 +139,14 @@
             videoContainer.style.alignItems = "center";
             videoContainer.style.justifyContent = "center";
             
+            // Changes value to true when a video is played.
             if(videoTitle == 'Puppies'){
                 puppiesVideoPlayed = true;
             }
-            if(videoTitle == 'Anime'){
+            else if(videoTitle == 'Anime'){
                 animeVideoPlayed = true;
             }
-            if(videoTitle == 'Nature'){
+            else if(videoTitle == 'Nature'){
                 natureVideoPlayed = true;
             }
         }
@@ -164,7 +163,7 @@
                 playButtons.style.display = "block";
                 stop_control_movie();
                 if(puppiesVideoPlayed == true && animeVideoPlayed == true && natureVideoPlayed == true){
-                    // If the last movie finished, we save the file.
+                    // If all 3 movies are played, we save the file.
                     store_movie_data();
                 }
             });
