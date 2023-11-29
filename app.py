@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import jwt
 from auth import auth as auth_blueprint
+from result import res as res_blueprint
 
 import sys
 import datetime
@@ -43,6 +44,7 @@ app.secret_key = 'secret key for session'
 
 # register auth.py file
 app.register_blueprint(auth_blueprint)
+app.register_blueprint(res_blueprint)
 
 #g is flask for a global var storage 
 def init_new_env():
@@ -69,6 +71,8 @@ def main():
 @app.route('/inbox')
 def inbox():
     return render_template('inbox.html')
+
+
 
 @app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
 @token_required
