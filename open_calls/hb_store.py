@@ -1,4 +1,5 @@
 import pickle
+from tools.logging import logger   
 from open_calls.hb_record import recorded_user_data
 
 def handle_request():
@@ -7,4 +8,5 @@ def handle_request():
     print(pickle_file_name)
     with open(pickle_file_name, 'wb') as file:
         pickle.dump(recorded_user_data, file)
+    logger.debug("File has been pickled")
     return ["File pickled"]
