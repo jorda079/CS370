@@ -89,22 +89,25 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-                        <a class="nav-link" href="{{ url_for('main') }}">Home</a>
+                        <a class="nav-link" href="Mainpage.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.profile') }}">User Profile</a>
+                        <a class="nav-link" href="profile.html">User Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Find a Match</a>
+                        <a class="nav-link" href="index.html">Find a Match</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                        <a class="nav-link" href="login.html">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.signup') }}">Sign Up</a>
+                        <a class="nav-link" href="Signup.html">Sign Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                        <a class="nav-link" href="login.html">Logout</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link" href="results.html">Results</a>
                     </li>
 				</ul>
 			</div>
@@ -116,7 +119,7 @@
 				<h2><center>Signup</center></h2>
 				<label for="email">Email:</label>
 				<br>
-				<input type="text" id="email" class="text" name="email" required>
+				<input type="text" id="email" class="text" name="email">
 				<br>
 				<div id="email_empty" style="display:none;" class="error">
 					<span>Email required</span>
@@ -124,7 +127,7 @@
 				</div>
 				<label for="username">Username:</label>
 				<br>
-				<input type="text" id="username" class="text" name="username" required>
+				<input type="text" id="username" class="text" name="username">
 				<br>
 				<div id="user_empty" style="display:none;" class="error">
 					<span>Username required</span>
@@ -133,7 +136,7 @@
 
 				<label for="password">Password:</label>
 				<br>
-				<input type="password" id="password" class="text" name="password" required>
+				<input type="password" id="password" class="text" name="password">
 				<div id="pass_empty" style="display:none;" class="error">
                     <br>
 					<span>Password required</span>
@@ -141,7 +144,7 @@
 				<br>
 				<label for="password2"> Confirm Password:</label>
 				<br>
-				<input type="password" id="password2" class="text" name="password2" required>
+				<input type="password" id="password2" class="text" name="password2">
 				<br>
 				<div id="pass2_empty" style="display:none;" class="error">
 					<span>Password Confirmation Required</span>
@@ -153,7 +156,7 @@
 				</div>
 				<label for="Gender"> Gender:</label>
 				<br>
-				<input type="gender" id="gender" class="text" name="gender" required>
+				<input type="gender" id="gender" class="text" name="gender">
 				<div id="gender_empty" style="display:none;" class="error">
 					<br>
 					<span>Gender required</span>
@@ -161,7 +164,7 @@
 				<br>
 				<label for="Birthdate">Birthdate:</label>
 				<br>
-				<input type="date" id="birthdate" class="date" name="birthdate" required>
+				<input type="date" id="birthdate" class="date" name="birthdate">
 				<div id="birthdate_empty" style="display:none;" class="error">
 					<br>
 					<span>Birthdate required</span>
@@ -169,7 +172,7 @@
 				<br>
 				<label for="Address">Address:</label>
 				<br>
-				<input type="text" id="address" class="text" name="address" required>
+				<input type="address" id="address" class="text" name="address">
 				<div id="address_empty" style="display:none;" class="error">
 					<br>
 					<span>Address required</span>
@@ -177,7 +180,7 @@
 				<br>
 				<label for="phone number">Phone Number:</label>
 				<br>
-				<input type="tel" id="phone" class="text" name="phone" required>
+				<input type="phone number" id="phone number" class="text" name="phone number">
 				<div id="phone_empty" style="display:none;" class="error">
 					<br>
 					<span>Phone number required</span>
@@ -185,7 +188,7 @@
 				<br>
 				<label for="introduce">Introduce Yourself:</label>
 				<br>
-				<textarea id="introduce" class="textarea" name="introduce" placeholder="Please introduce yourself."></textarea>
+				<textarea id="introduce" class="textarea" name="introduce">Enter text here...</textarea>
 				<div id="introduce_empty" style="display:none;" class="error">
 					<br>
 					<span>Introduction required</span>
@@ -225,7 +228,7 @@
 				<!-- <input type="submit" value="Create Account" class="login_button">-->
 				<button class="login_button">Create Account</button>
 				<hr>
-				<a href="{{ url_for('auth.login') }}">Already Have An Account</a>
+				<a href="login.html">Already Have An Account</a>
 			</form>
         </div>
 	</div>
