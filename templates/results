@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Results</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<style>
+		body {
+			background: #913d05;
+			color: #444;
+			font-family: "Open Sans", sans-serif;
+			line-height: 1.6;
+			margin: 0;
+			padding: 0;
+		}
+		
+		.navbar-collapse {
+			flex-grow: unset !important;
+		}
+		.nav-link {
+			color: #222;
+		}
+		.main {
+			margin:auto;
+			width:60%;
+			padding:10px;
+            text-align:center;
+		}
+		.main h1 {
+			color: white;
+			text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+			font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+		}
+        .main h2 {
+            color: white;   
+            font-weight: 500;
+        }
+		.main ul {
+			color: white;
+			text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+		}
+      .contact-form {
+    margin: 50px auto;
+    max-width: 700px; /* Increased width */
+    padding: 50px; /* Increased padding */
+    background-color: rgba(230, 230, 230, 0.8);
+    border-top-left-radius: 70% 20%;
+    border-top-right-radius: 70% 20%;
+    border-bottom-left-radius: 20% 20%;
+    border-bottom-right-radius: 20% 20%;
+    visibility: hidden;
+}
+
+        .form-label {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            display: block;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.1) inset;
+        }
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        .submit-button:hover {
+            background-color: #3e8e41;
+        }
+        .success-message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            border-radius: 5px;
+            color: #155724;
+            display: none;
+        }
+        .newsletter-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .newsletter-btn:hover {
+    background-color: #3e8e41;
+}
+		
+	.contact-form h2{
+			margin-left: 75px;
+		}
+        
+
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a href="#"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+                        <a class="nav-link" href="Mainpage.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">User Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Find a Match</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Signup.html">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="results.html">Results</a>
+                    </li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="main">
+		<h1>Results</h1>
+        <h2>Let's see who you are matched with!</h2>
+    </div>
+
+    
