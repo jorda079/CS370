@@ -40,14 +40,14 @@
 			text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 		}
       .contact-form {
-    margin: 50px auto;
-    max-width: 700px; /* Increased width */
-    padding: 50px; /* Increased padding */
-    background-color: rgba(230, 230, 230, 0.8);
-    border-top-left-radius: 70% 20%;
-    border-top-right-radius: 70% 20%;
-    border-bottom-left-radius: 20% 20%;
-    border-bottom-right-radius: 20% 20%;
+            margin: 50px auto;
+            max-width: 700px; /* Increased width */
+            padding: 50px; /* Increased padding */
+            background-color: rgba(230, 230, 230, 0.8);
+            border-top-left-radius: 70% 20%;
+            border-top-right-radius: 70% 20%;
+            border-bottom-left-radius: 20% 20%;
+            border-bottom-right-radius: 20% 20%;
 }
 
         .form-label {
@@ -99,12 +99,18 @@
             display: inline-block;
         }
         .newsletter-btn:hover {
-    background-color: #3e8e41;
-}
+            background-color: #3e8e41;
+        }
 		
 	.contact-form h2{
 			margin-left: 75px;
 		}
+        .map{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            align-items: center;
+        }
 
 	</style>
 </head>
@@ -115,25 +121,25 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-                        <a class="nav-link" href="Mainpage.html">Home</a>
+                        <a class="nav-link" href="{{ url_for('main') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.html">User Profile</a>
+                        <a class="nav-link" href="{{ url_for('auth.profile') }}">User Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Find a Match</a>
+                        <a class="nav-link" href="{{ url_for('index') }}">Find a Match</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Signup.html">Sign Up</a>
+                        <a class="nav-link" href="{{ url_for('auth.signup') }}">Sign Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Logout</a>
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="results.html">Results</a>
+                        <a class="nav-link" href="{{ url_for('auth.results') }}">Results</a>
                     </li>
 				</ul>
 			</div>
@@ -162,15 +168,16 @@
 				<label for="message" class="form-label">Introduce Yourself</label>
 				<textarea id="message" name="message" class="form-control" rows="5" disabled>{{profile.introduce}}</textarea>
 				<!-- <button type="save" class="save-button">Save</button> -->
+                
 			</form>
 			<div class="success-message"></div>
 		</div>
-	</div>
-
-	<a href="#" class="btn btn-primary btn-lg">Sign up for our newsletter</a>
+</html>
 
 
-	<div style="width: 100%; height: 400px;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.21067689885!2d-117.16126052381045!3d33.1298293658714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dbf554f836a293%3A0x55c9178b1fdc5be4!2sCalifornia%20State%20University%20San%20Marcos!5e0!3m2!1sen!2sus!4v1698093206640!5m2!1sen!2sus" width="2000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+<a href="#" class="btn btn-primary btn-lg">Sign up for our newsletter</a>
+
+
+<div class="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.21067689885!2d-117.16126052381045!3d33.1298293658714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dbf554f836a293%3A0x55c9178b1fdc5be4!2sCalifornia%20State%20University%20San%20Marcos!5e0!3m2!1sen!2sus!4v1698093206640!5m2!1sen!2sus" width="2000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
