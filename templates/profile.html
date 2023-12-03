@@ -145,15 +145,16 @@
 			</div>
 		</nav>
 	</header>
+    <form action="/upload_file" method="POST" enctype="multipart/form-data">
 	<div class="main">
 		<h1>User Profile</h1>
 		<ul style="list-style-type:none; padding-left:0px;">
             <img src="/templates/image.jpg" class="rounded-circle" width="150">
-			<input type="file" accept="image/jpeg, image/png, image/jpg">
-		</ul>
+			<input type="file" accept="image/jpeg, image/png, image/jpg" name="profile_pic">
+            <button type="save" class="save-button">Save</button>
+        </ul>
 		
 		<div class="contact-form">
-			<form action="/profile" method="post">
 				<label for="name" class="form-label">Name</label>
 				<input type="text" id="name" value="{{profile.name}}" name="name" class="form-control" disabled/>
                 <label for="name" class="form-label">Age</label>
@@ -168,11 +169,9 @@
 				<input type="text" id="name" value="{{profile.address}}" name="address" class="form-control" disabled/>
 				<label for="message" class="form-label">Introduce Yourself</label>
 				<textarea id="message" name="message" class="form-control" rows="5" disabled>{{profile.introduce}}</textarea>
-				<!-- <button type="save" class="save-button">Save</button> -->
-                
-			</form>
 			<div class="success-message"></div>
 		</div>
+    </form>
 </html>
 
 

@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS users (
             phone TEXT,
             gender TEXT,
             birth TEXT, 
-            introduce TEXT
+            introduce TEXT,
+            profile_photo TEXT
 );
 
 CREATE TABLE IF NOT EXISTS questionnaire (
