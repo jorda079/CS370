@@ -4,7 +4,6 @@ from neurosdk.cmn_types import *
 from app import user_data
 import copy
 from auth import request_username
-from app import data_received
 
 # Creates user_data template
 recorded_user_data = copy.deepcopy(user_data)

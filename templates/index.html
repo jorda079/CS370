@@ -95,12 +95,18 @@
                 <li>The prongs should be on the back of your head just on the base of your skull to scan for visual receptors.</li>
                 <li>Once you are ready, go ahead and press play.</li>
             </ol>
+            <!-- Buttons to trigger video playback -->
+            <div id="playButtons">
+                <button onclick="playVideo('/static/movie1.mp4', 'Puppies')">Puppies</button>
+                <button onclick="playVideo('/static/movie2.mp4', 'Anime')">Anime</button>
+                <button onclick="playVideo('/static/movie3.mp4', 'Nature')">Nature</button>
+            </div>
         </div>
         <div class="video-container" id="videoContainer">
-            <video id="video" controls>
-                <source src="/static/movie.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <!-- Video elements for each video (hidden by default) -->
+            <video id="Puppies" controls style="display: none;"></video>
+            <video id="Anime" controls style="display: none;"></video>
+            <video id="Nature" controls style="display: none;"></video>
         </div>
     </section>
 
@@ -110,6 +116,71 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" 
 		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
+        const playButtons = document.getElementById("playButtons");
+        const videoContainer = document.getElementById("videoContainer");
+
+        // Variables to check if videos have been played.
+        let puppiesVideoPlayed, animeVideoPlayed, natureVideoPlayed = false;
+        // Boolean to see if the user data has been created.
+        let userDataCreated = false;
+
+        function playVideo(videoSrc, videoTitle) {
+            // Hide the buttons
+            playButtons.style.display = "none";
+
+            // Show and play the selected video
+            const selectedVideo = document.getElementById(videoTitle);
+            selectedVideo.style.display = "block";
+            selectedVideo.src = videoSrc;
+            selectedVideo.play();
+
+            // Center the video container
+            videoContainer.style.display = "flex";
+            videoContainer.style.alignItems = "center";
+            videoContainer.style.justifyContent = "center";
+
+            // Changes value to true when a video is played.
+            if(videoTitle == 'Puppies'){
+                puppiesVideoPlayed = true;
+            }
+            else if(videoTitle == 'Anime'){
+                animeVideoPlayed = true;
+            }
+            else if(videoTitle == 'Nature'){
+                natureVideoPlayed = true;
+            }
+        }
+
+        // Event listeners for when the video ends
+        const videos = [document.getElementById("Puppies"), document.getElementById("Anime"), document.getElementById("Nature")];
+
+        videos.forEach(video => {
+            video.addEventListener("ended", () => {
+                video.style.display = "none";
+                // Reset the video source to prevent auto-play when shown again
+                video.src = "";
+                // Show the buttons
+                playButtons.style.display = "block";
+                stop_control_movie();
+                if(puppiesVideoPlayed == true && animeVideoPlayed == true && natureVideoPlayed == true){
+                    // If all 3 movies are played, we save the file.
+                    store_movie_data();
+                }
+            });
+            video.addEventListener("pause", (event) => {
+                stop_control_movie();
+            });
+            video.addEventListener("play", (event) => {
+                // Start recording data for the current video
+                play_control_movie();
+                // Creates the user data variabel if it does not exist.
+                if(!userDataCreated){
+                    userDataCreated = true;
+                    record_movie_data();
+                }
+            });
+        });
+
 
         // Calls the play_movie file
         function play_control_movie(){
