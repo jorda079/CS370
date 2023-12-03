@@ -25,10 +25,6 @@ from tools.token_required import token_required
 from tools.logging import logger
 
 ERROR_MSG = "Ooops.. Didn't work!"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 25c5b75f4d259c1184b5dc8352f5dd4eb967d428
 UPLOAD_FOLDER = 'static/images/'
 
 # Global custom data type to store username and brainwave data
@@ -40,11 +36,6 @@ user_data = {
     'movie_2_data': [],
     'movie_3_data': []
 }
-<<<<<<< HEAD
-=======
->>>>>>> a378fb283a39e404cb20365eeca91db5b992d942
-=======
->>>>>>> 25c5b75f4d259c1184b5dc8352f5dd4eb967d428
 
 #Create our app
 app = Flask(__name__)
