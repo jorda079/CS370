@@ -1,12 +1,24 @@
 from flask import request, g                                   
 from tools.logging import logger   
 from neurosdk.cmn_types import * 
-from app import user_data
 import copy
 from auth import request_username
 
+# Custom data type to store username and brainwave data
+user_data = {
+    # Store current username 
+    'cur_username': "",
+    # Store brainwave data for each respective movie
+    'movie_1_data': [], 
+    'movie_2_data': [],
+    'movie_3_data': []
+}
+
 # Creates user_data template
 recorded_user_data = copy.deepcopy(user_data)
+
+# Stores the value for the current movie
+current_movie = 0
 
 # Stores all the recorded user data from each movie
 def handle_request():

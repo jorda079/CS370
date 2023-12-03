@@ -123,6 +123,8 @@
         let puppiesVideoPlayed, animeVideoPlayed, natureVideoPlayed = false;
         // Boolean to see if the user data has been created.
         let userDataCreated = false;
+        // Variable to store current movie being played.
+        let currentMovie = 0;
 
         function playVideo(videoSrc, videoTitle) {
             // Hide the buttons
@@ -142,12 +144,15 @@
             // Changes value to true when a video is played.
             if(videoTitle == 'Puppies'){
                 puppiesVideoPlayed = true;
+                currentMovie = 1;
             }
             else if(videoTitle == 'Anime'){
                 animeVideoPlayed = true;
+                currentMovie = 2;
             }
             else if(videoTitle == 'Nature'){
                 natureVideoPlayed = true;
+                currentMovie = 3;
             }
         }
 
@@ -165,6 +170,7 @@
                 if(puppiesVideoPlayed == true && animeVideoPlayed == true && natureVideoPlayed == true){
                     // If all 3 movies are played, we save the file.
                     store_movie_data();
+                    analyze_data();
                 }
             });
             video.addEventListener("pause", (event) => {
@@ -221,6 +227,18 @@
       // Calls the stop_movie file
       function store_movie_data(){
           $.post("/open_api/hb_store", { "data":"somedata", "any":"data"},
+              function(data, textStatus) {
+                  //this gets called when browser receives response from server
+                  console.log(data);
+              }, "json").fail( function(response) {
+                  //this gets called if the server throws an error
+                  console.log("error");
+              console.log(response);});
+      }
+
+      // Calls the stop_movie file
+      function analyze_data(){
+          $.post("/open_api/hb_analyze_data", { "data":"somedata", "any":"data"},
               function(data, textStatus) {
                   //this gets called when browser receives response from server
                   console.log(data);
