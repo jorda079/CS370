@@ -15,4 +15,4 @@ def result(username=None):
 
     username = session['name']
 
-    return render_template('result.html', username=username)
+    return render_template('results.html', username=username)
