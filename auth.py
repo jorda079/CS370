@@ -1,9 +1,8 @@
 from flask import Blueprint, render_template,request, redirect, url_for, g, session, flash
 from db_con import get_db_instance, get_db
-from werkzeug.utils import secure_filename
-import os
 
 auth = Blueprint('auth', __name__)
+
 
 # user authentication: sign-up
 @auth.route('/signup')
@@ -94,24 +93,10 @@ def profile(username=None):
     'phone': user[5],
     'gender':user[6],
     'birth': user[7],
-    'introduce': user[8]
+    'introduce': user[8],
+    'profile_pic' : user[9]
     }
     return render_template("profile.html", profile=profile, username=username)
-
-@auth.route('/upload_file', methods=['POST'])
-def upload_file():
-    db, cur = get_db_instance()
-    profile_pic = request.files['profile_pic']
-    # grab image name
-    pic_filename = secure_filename(profile_pic.filename)
-    # set UUID
-    profile_pic = str(pic_filename)
-
-    username = session['name']
-    cur.execute("UPDATE users SET profile_photo=? WHERE name=?", (profile_pic, username))
-    db.commit()
-    db.close()
-    return redirect(url_for("auth.profile"))
 
 # user authentication: logout method
 @auth.route('/logout')
