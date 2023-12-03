@@ -94,25 +94,25 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-                        <a class="nav-link" href="Mainpage.html">Home</a>
+                        <a class="nav-link" href="{{ url_for('main') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.html">User Profile</a>
+                        <a class="nav-link" href="{{ url_for('auth.profile') }}">User Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Find a Match</a>
+                        <a class="nav-link" href="{{ url_for('index') }}">Find a Match</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Signup.html">Sign Up</a>
+                        <a class="nav-link" href="{{ url_for('auth.signup') }}">Sign Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Logout</a>
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="results.html">Results</a>
+                        <a class="nav-link" href="{{ url_for('res.result') }}">Results</a>
                     </li>
 				</ul>
 			</div>
