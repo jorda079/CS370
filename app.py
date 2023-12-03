@@ -1,13 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for, g
+from flask import Flask, render_template, request, redirect, url_for, g, session
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import jwt
 from auth import auth as auth_blueprint
 from result import res as res_blueprint
+from werkzeug.utils import secure_filename
 
 import sys
 import datetime
 import bcrypt
 import traceback
+import os
 
 # ! temporarily except egg.py to avoid error
 # from tools.eeg import get_head_band_sensor_object
@@ -23,6 +25,17 @@ from tools.token_required import token_required
 from tools.logging import logger
 
 ERROR_MSG = "Ooops.. Didn't work!"
+UPLOAD_FOLDER = 'static/images/'
+
+# Global custom data type to store username and brainwave data
+user_data = {
+    # Store current username 
+    'cur_username': "",
+    # Store brainwave data for each respective movie
+    'movie_1_data': [], 
+    'movie_2_data': [],
+    'movie_3_data': []
+}
 
 #Create our app
 app = Flask(__name__)
@@ -34,6 +47,9 @@ app.secret_key = 'secret key for session'
 # register auth.py file
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(res_blueprint)
+
+# upload profile photo image
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 #g is flask for a global var storage 
 def init_new_env():
@@ -107,6 +123,27 @@ def exec_proc(proc_name):
         return json_response(status_=500 ,data=ERROR_MSG)
 
     return resp
+
+# profile photo upload method
+@app.route('/upload_file', methods=['POST'])
+def upload_file():
+    db, cur = get_db_instance()
+    profile_pic = request.files['profile_pic']
+    
+    # grab image name
+    pic_filename = secure_filename(profile_pic.filename)
+    profile_pic = str(pic_filename)
+
+    # upload image to static folder
+    saver = request.files['profile_pic']
+    saver.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_filename))
+
+    # store the image file into database
+    username = session['name']
+    cur.execute("UPDATE users SET profile_photo=? WHERE name=?", (profile_pic, username))
+    db.commit()
+    db.close()
+    return redirect(url_for("auth.profile"))
 
 
 if __name__ == '__main__':
