@@ -24,17 +24,6 @@ from tools.logging import logger
 
 ERROR_MSG = "Ooops.. Didn't work!"
 
-
-# Global custom data type to store username and brainwave data
-user_data = {
-    # Store current username 
-    'cur_username': "",
-    # Store brainwave data for each respective movie
-    'movie_1_data': [], 
-    'movie_2_data': [],
-    'movie_3_data': []
-}
-
 #Create our app
 app = Flask(__name__)
 #add in flask json
