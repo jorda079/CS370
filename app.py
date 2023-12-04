@@ -10,9 +10,10 @@ import datetime
 import bcrypt
 import traceback
 import os
+import json
 
 # ! temporarily except egg.py to avoid error
-# from tools.eeg import get_head_band_sensor_object
+from tools.eeg import get_head_band_sensor_object
 
 
 from db_con import get_db_instance, get_db
@@ -26,16 +27,6 @@ from tools.logging import logger
 
 ERROR_MSG = "Ooops.. Didn't work!"
 UPLOAD_FOLDER = 'static/images/'
-
-# Global custom data type to store username and brainwave data
-user_data = {
-    # Store current username 
-    'cur_username': "",
-    # Store brainwave data for each respective movie
-    'movie_1_data': [], 
-    'movie_2_data': [],
-    'movie_3_data': []
-}
 
 #Create our app
 app = Flask(__name__)
@@ -78,6 +69,17 @@ def inbox():
     return render_template('inbox.html')
 
 
+from open_calls.hb_record import update_current_movie
+# Accepts the current movie value from json
+@app.route('/update_movie', methods=['POST'])
+def update_movie():
+    # Stores json data and sets it to current movie via function
+    data = json.loads(request.data)
+    current_movie = data['value']
+    update_current_movie(current_movie)
+
+    # Returns success with updated movie value
+    return ["Movie Number Updated " + str(current_movie)]
 
 @app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
 @token_required

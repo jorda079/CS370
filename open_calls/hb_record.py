@@ -1,8 +1,9 @@
-from flask import request, g                                   
+from flask import g                         
 from tools.logging import logger   
 from neurosdk.cmn_types import * 
 import copy
 from auth import request_username
+import time
 
 # Custom data type to store username and brainwave data
 user_data = {
@@ -20,6 +21,29 @@ recorded_user_data = copy.deepcopy(user_data)
 # Stores the value for the current movie
 current_movie = 0
 
+# Update the value of current movie to passed value
+def update_current_movie(data):
+    global current_movie
+    current_movie = data
+
+def update_user_data(data):
+    global recorded_user_data
+    # Get the updated value for current movie
+    #current_movie = get_current_movie()
+
+    # Iterate for all possible movie values and store respectively
+    if(current_movie == 0):
+        logger.debug("Invalid Movie")
+    elif(current_movie == 1):
+        recorded_user_data['movie_1_data'].append(data)
+        logger.debug("Finished Movie 1")
+    elif(current_movie == 2):
+        recorded_user_data['movie_2_data'].append(data)
+        logger.debug("Finished Movie 2")
+    elif(current_movie == 3):
+        recorded_user_data['movie_3_data'].append(data)
+        logger.debug("Finished Movie 3")
+
 # Stores all the recorded user data from each movie
 def handle_request():
     # Get username from current session, store it in the object
@@ -27,18 +51,55 @@ def handle_request():
     
     # Stores filler data if headband not connected.
     if g.hb == None:
-        recorded_user_data['movie_1_data'] = ['1111', '11', '1']
-        logger.debug("Finished Movie 1")
-        recorded_user_data['movie_2_data'] = ['2222', '2', '2']
-        logger.debug("Finished Movie 2")
-        recorded_user_data['movie_3_data'] = ['3333', '3', '3']
-        logger.debug("Finished Movie 3")
+
+        # Movie value 4 means all videos have been watched
+        # So exit loop at 4
+        while(current_movie != 4):
+
+            # Iterate for all possible movie values and store respectively
+            if(current_movie == 0):
+                # No movie has been selected
+                logger.debug("Invalid Movie")
+
+            elif(current_movie == 1):
+                # If empty fill with test data
+                if(recorded_user_data['movie_1_data'] == []):
+                    update_user_data('1111')
+                    update_user_data('11')
+                    update_user_data('1')
+                    logger.debug("Finished Movie 1")
+
+            elif(current_movie == 2):
+                # If empty fill with test data
+                if(recorded_user_data['movie_2_data'] == []):
+                    update_user_data('2222')
+                    update_user_data('2')
+                    update_user_data('2')
+                    logger.debug("Finished Movie 2")
+
+            elif(current_movie == 3):
+                # If empty fill with test data
+                if(recorded_user_data['movie_3_data'] == []):
+                    update_user_data('3333')
+                    update_user_data('3')
+                    update_user_data('3')
+                    logger.debug("Finished Movie 3")
+            
+            # Sleep for time between choosing videos
+            time.sleep(1)
+        
+        # Data recorded so return
         logger.debug("Finished Test Recording")
         return ["Finished Recording Test"]
     
-    # Record headband data
-    # Store values for each movie
+    # Stores head band data
     else:
-        # * Store recorded data here *
+        # Iterate, checking for final movie value
+        while(current_movie != 4):
+            # Sleep for time between choosing videos
+            time.sleep(1)
+
+        # Data has been recorded so return
         logger.debug("Finished Recording")
         return ["Finished Recording"]
+    
