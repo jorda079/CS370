@@ -69,7 +69,9 @@ def login_post():
     if not user or str(password) != user[2]:
         flash("Please check your login details and try again.")
         return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
-    session['name'] = user[1]   # put username in to session 
+    # session includes user name & id
+    session['name'] = user[1]   
+    session['id'] = user[0]
     return redirect(url_for("auth.profile", username=session['name']))
 
 # user authentication: user profile mtethod
@@ -82,7 +84,7 @@ def profile(username=None):
         flash("You should login first")
         return redirect(url_for("auth.login"))
     
-    # from session, call user information to profile 
+    # call user information to profile 
     username = session['name']
     cur.execute("SELECT * FROM users WHERE name=(?)", [username])
     user = cur.fetchone()
