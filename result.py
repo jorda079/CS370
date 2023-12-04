@@ -28,20 +28,5 @@ def result(username=None):
     for user in match_users:
         cur.execute("SELECT * FROM users WHERE id=(?)", user)
         rows.append(cur)
-    # cur.execute("SELECT * FROM users WHERE id=(?)", )
-
-    # for row in cur:
-    #     rows.append(row)
-    #     print(row)
-    
-    # users={
-    # 'name': user[1],
-    # 'email': user[3],
-    # 'address': user[4],
-    # 'phone': user[5],
-    # 'gender':user[6],
-    # 'birth': user[7],
-    # 'introduce': user[8],
-    # 'profile_pic' : user[9]
-    # }
+        
     return render_template('results.html', username=username, rows=rows)

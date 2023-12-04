@@ -124,6 +124,8 @@
         <div class="contact-form">
 			<form action="{{url_for('res.result')}}" method="post">
                 <ul class="user-list">
+                    {% if rows %}
+
                     {% for row in rows %}
                     <li>
                         <h2 for="user1" class="form-label1">User 1</h2>
@@ -143,6 +145,11 @@
                         <textarea id="message" value name="message" class="form-control" rows="5" disabled></textarea>
                     </li>
                     {% endfor %}
+
+                    {% else %}
+                    <h1> You don't have any matching person. Sorry. </h1>
+
+                    {% endif %}
                 </ul>
 				
                 
