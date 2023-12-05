@@ -40,8 +40,9 @@ def calculate_average_user_data(data_objects_array):
     avg_O2 = sum_O2 / total_objects
     avg_T3 = sum_T3 / total_objects
     avg_T4 = sum_T4 / total_objects
+    all_avgs = (avg_O1 + avg_O2 + avg_T3 + avg_T4) / 4
 
-    return avg_O1, avg_O2, avg_T3, avg_T4
+    return avg_O1, avg_O2, avg_T3, avg_T4, all_avgs
 
 # We can read the data from the pickle file and analyze it
 try:
@@ -57,19 +58,19 @@ try:
             movie_3_read = data 
 
     # Call the function to calculate averages
-    movie_1_avg_O1, movie_1_avg_O2, movie_1_avg_T3, movie_1_avg_T4 = calculate_average_user_data(movie_1_read)
+    movie_1_avg_O1, movie_1_avg_O2, movie_1_avg_T3, movie_1_avg_T4, movie_1_all_avgs = calculate_average_user_data(movie_1_read)
     # Print the averages
-    print(f'Movie 1 Averages: O1 = {movie_1_avg_O1}, O2 = {movie_1_avg_O2}, T3 = {movie_1_avg_T3}, T4 = {movie_1_avg_T4}\n')
+    print(f'Movie 1 Averages: O1 = {movie_1_avg_O1}, O2 = {movie_1_avg_O2}, T3 = {movie_1_avg_T3}, T4 = {movie_1_avg_T4}, All Averages = {movie_1_all_avgs}\n')
 
     # Call the function to calculate averages
-    movie_2_avg_O1, movie_2_avg_O2, movie_2_avg_T3, movie_2_avg_T4 = calculate_average_user_data(movie_2_read)
+    movie_2_avg_O1, movie_2_avg_O2, movie_2_avg_T3, movie_2_avg_T4, movie_2_all_avgs = calculate_average_user_data(movie_2_read)
     # Print the averages
-    print(f'Movie 2 Averages: O1 = {movie_2_avg_O1}, O2 = {movie_2_avg_O2}, T3 = {movie_2_avg_T3}, T4 = {movie_2_avg_T4}\n')
+    print(f'Movie 2 Averages: O1 = {movie_2_avg_O1}, O2 = {movie_2_avg_O2}, T3 = {movie_2_avg_T3}, T4 = {movie_2_avg_T4}, All Averages = {movie_2_all_avgs}\n')
 
     # Call the function to calculate averages
-    movie_3_avg_O1, movie_3_avg_O2, movie_3_avg_T3, movie_3_avg_T4 = calculate_average_user_data(movie_3_read)
+    movie_3_avg_O1, movie_3_avg_O2, movie_3_avg_T3, movie_3_avg_T4, movie_3_all_avgs = calculate_average_user_data(movie_3_read)
     # Print the averages
-    print(f'Movie 3 Averages: O1 = {movie_3_avg_O1}, O2 = {movie_3_avg_O2}, T3 = {movie_3_avg_T3}, T4 = {movie_3_avg_T4}\n')
+    print(f'Movie 3 Averages: O1 = {movie_3_avg_O1}, O2 = {movie_3_avg_O2}, T3 = {movie_3_avg_T3}, T4 = {movie_3_avg_T4}, All Averages = {movie_3_all_avgs}\n')
 
     
 
