@@ -26,23 +26,17 @@ def update_current_movie(data):
     global current_movie
     current_movie = data
 
+# Appends data to user data structure
 def update_user_data(data):
     global recorded_user_data
-    # Get the updated value for current movie
-    #current_movie = get_current_movie()
 
     # Iterate for all possible movie values and store respectively
-    if(current_movie == 0):
-        logger.debug("Invalid Movie")
-    elif(current_movie == 1):
+    if(current_movie == 1):
         recorded_user_data['movie_1_data'].append(data)
-        logger.debug("Finished Movie 1")
     elif(current_movie == 2):
         recorded_user_data['movie_2_data'].append(data)
-        logger.debug("Finished Movie 2")
     elif(current_movie == 3):
         recorded_user_data['movie_3_data'].append(data)
-        logger.debug("Finished Movie 3")
 
 # Stores all the recorded user data from each movie
 def handle_request():
