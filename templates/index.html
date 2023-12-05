@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brainwave Capture</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             background: #913d05;
@@ -14,48 +13,56 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #913d05;
-            opacity: 0.7;
-            z-index: -1;
+            text-align: center;
         }
 
         .hero-section {
-            min-height: 100vh;
             display: flex;
-            align-items: flex-start; /* Align content to the top */
-            justify-content: center;
-            position: relative;
+            align-items: center;
             flex-direction: column;
-        }
-
-        .hero-section h1,
-        .hero-section p,
-        .hero-section ol {
-            text-align: left; /* Align text to the left */
+            min-height: 100vh;
         }
 
         .video-container {
-            margin-top: 20px;
-            max-width: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            max-height: 60vh;
         }
 
-        .navbar {
-            text-align: left; /* Align navigation tabs to the left */
+        .video-wrapper {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        video {
+            width: 60%;
+            aspect-ratio: 9 / 16;
+        }
+
+        .thumb-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .thumb-down {
+            left: 10px;
+        }
+
+        .thumb-up {
+            right: 10px;
         }
     </style>
 </head>
 <body>
     <header>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a href="#"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a href="#"><img height="50" style="border-radius:30px;" src="https://cdn.discordapp.com/attachments/145308522882662401/1163498520649662464/image.png?ex=653fcb70&is=652d5670&hm=7cb94fb8eba00d717ddb0f0981e395e32361644888421736a6810c534d293c71&"></a>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
@@ -81,84 +88,131 @@
                     </li>
 				</ul>
 			</div>
-		</nav>
-	</header>
-    <section class = "hero-section">
-        <div class="hero-overlay"></div>
+        </nav>
+    </header>
+    <section class="hero-section">
         <div class="container">
             <h1>Welcome to Brainwave Capture</h1>
-            <p>Now we will capture your brainwaves while you watch this short video.</p>
+            <p>Now we will capture your brainwaves while you watch these videos.</p>
             <h2>Instructions:</h2>
-            <ol>
+            <ul>
                 <li>Place the headband on your head.</li>
                 <li>The gold plates of the headband should be just on your forehead to scan your prefrontal cortex.</li>
                 <li>The prongs should be on the back of your head just on the base of your skull to scan for visual receptors.</li>
                 <li>Once you are ready, go ahead and press play.</li>
-            </ol>
-            <!-- Buttons to trigger video playback -->
+            </ul>
             <div id="playButtons">
-                <button onclick="playVideo('/static/movie1.mp4', 'Puppies')">Puppies</button>
-                <button onclick="playVideo('/static/movie2.mp4', 'Anime')">Anime</button>
-                <button onclick="playVideo('/static/movie3.mp4', 'Nature')">Nature</button>
+                <button onclick="showVideos('Animals')">Animals</button>
+                <button onclick="showVideos('Anime')">Anime</button>
+                <button onclick="showVideos('Nature')">Nature</button>
             </div>
-        </div>
-        <div class="video-container" id="videoContainer">
-            <!-- Video elements for each video (hidden by default) -->
-            <video id="Puppies" controls style="display: none;"></video>
-            <video id="Anime" controls style="display: none;"></video>
-            <video id="Nature" controls style="display: none;"></video>
+            <div class="video-container" id="Animals">
+                <div class="video-wrapper">
+                    <video controls src="Animals/animal1.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Animals/animal2.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Animals/animal3.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Animals/animal4.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Animals/animal5.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+            </div>
+            <div class="video-container" id="Anime">
+                <div class="video-wrapper">
+                    <video controls src="Anime/anime1.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Anime/anime2.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Anime/anime3.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+            </div>
+            <div class="video-container" id="Nature">
+                <div class="video-wrapper">
+                    <video controls src="Nature/nature1.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div><div class="video-wrapper">
+                    <video controls src="Nature/nature2.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Nature/nature3.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Nature/nature4.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+                <div class="video-wrapper">
+                    <video controls src="Nature/nature5.mp4"></video>
+                    <button class="thumb-button thumb-down">&#128078;</button>
+                    <button class="thumb-button thumb-up">&#128077;</button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" 
-		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        const playButtons = document.getElementById("playButtons");
-        const videoContainer = document.getElementById("videoContainer");
+        function showVideos(category) {
+            // Hide all video containers
+            $('.video-container').hide();
 
-        // Variables to check if videos have been played.
-        let puppiesVideoPlayed, animeVideoPlayed, natureVideoPlayed = false;
-        // Boolean to see if the user data has been created.
-        let userDataCreated = false;
-        // Variable to store current movie being played.
-        let currentMovie = 0;
+            // Show selected category
+            $('#'+category).show();
 
-        function playVideo(videoSrc, videoTitle) {
-            // Hide the buttons
-            playButtons.style.display = "none";
-
-            // Show and play the selected video
-            const selectedVideo = document.getElementById(videoTitle);
-            selectedVideo.style.display = "block";
-            selectedVideo.src = videoSrc;
-            selectedVideo.play();
-
-            // Center the video container
-            videoContainer.style.display = "flex";
-            videoContainer.style.alignItems = "center";
-            videoContainer.style.justifyContent = "center";
-
-            // Changes value to true when a video is played.
-            if(videoTitle == 'Puppies'){
-                puppiesVideoPlayed = true;
-                currentMovie = 1;
+            // Populate videos if not already done
+            if ($('#'+category).is(':empty')) {
+                for (let i = 1; i <= 5; i++) {
+                    let videoSrc = `/static/${category}/${category.toLowerCase()}${i}.mp4`;
+                    $('#'+category).append(`
+                        <div class="video-wrapper">
+                            <video controls src="${videoSrc}"></video>
+                            <button class="thumb-button thumb-down">&#128078;</button>
+                            <button class="thumb-button thumb-up">&#128077;</button>
+                        </div>
+                    `);
+                }
             }
-            else if(videoTitle == 'Anime'){
-                animeVideoPlayed = true;
-                currentMovie = 2;
-            }
-            else if(videoTitle == 'Nature'){
-                natureVideoPlayed = true;
-                currentMovie = 3;
-            }
-            // Passes movie value to python
-            updateMovie();
         }
 
+        // Event listeners for thumbs up and down
+        $(document).on('click', '.thumb-up', function() {
+            $(this).css('background-color', 'green');
+        });
+
+        $(document).on('click', '.thumb-down', function() {
+            $(this).css('background-color', 'red');
+        });
+
+        
         // Event listeners for when the video ends
         const videos = [document.getElementById("Puppies"), document.getElementById("Anime"), document.getElementById("Nature")];
 
