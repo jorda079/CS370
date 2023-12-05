@@ -18,7 +18,6 @@ def result(username=None):
     Algorithms: match with person who has the same answer from questionnaire.
     User can see the group of people who have the same answer.
     '''
-    
     user_id = session['id']
     cur.execute("SELECT * FROM questionnaire WHERE _id=(?)", [user_id])
     current_user = cur.fetchone()
@@ -28,11 +27,9 @@ def result(username=None):
 
     users = []
 
-    # we put each person infor to each row
+    # each row: the group of people who have same questionnaire answer
     for user in matched_users:
         cur.execute("SELECT * FROM users WHERE id=(?)", user)
         row = cur.fetchone()
         users.append(row)
-    
-
     return render_template('results.html', username=username, users=users)

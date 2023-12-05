@@ -153,7 +153,6 @@
             <img src="{{ url_for('static', filename= 'images/' + profile.profile_pic)}}" class="rounded-circle" width="150">
             {% else %}
             <img src="/static/images/image.jpg" class="rounded-circle" width="150">
-
             {% endif %}
 			<input type="file" accept="image/jpeg, image/png, image/jpg" name="profile_pic">
             <button type="save" class="save-button">Save</button>
