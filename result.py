@@ -13,7 +13,12 @@ def result(username=None):
         flash("You should login first")
         return redirect(url_for("auth.login"))
     
-    # matching process algorithms
+    '''
+    matching process method
+    Algorithms: match with person who has the same answer from questionnaire.
+    User can see the group of people who have the same answer.
+    '''
+    
     user_id = session['id']
     cur.execute("SELECT * FROM questionnaire WHERE _id=(?)", [user_id])
     current_user = cur.fetchone()
@@ -23,6 +28,7 @@ def result(username=None):
 
     users = []
 
+    # we put each person infor to each row
     for user in matched_users:
         cur.execute("SELECT * FROM users WHERE id=(?)", user)
         row = cur.fetchone()
