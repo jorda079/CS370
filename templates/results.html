@@ -128,7 +128,11 @@
 
                     {% for user in users %}
                     <li>
-                        <h2 for="user1" class="form-label1">User</h2>
+                        {% if user[9] %}
+                        <img src="{{ url_for('static', filename= 'images/' + user[9])}}" class="rounded-circle" width="150">
+                        {% else %}
+                        <img src="/static/images/image.jpg" class="rounded-circle" width="150">
+                        {% endif %}
                         <label for="name" class="form-label2">Name</label>
                         <input type="text" id="name"  value="{{ user[1] }}" name="name" class="form-control" disabled/>
                         <label for="name" class="form-label2">Age</label>
