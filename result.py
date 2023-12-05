@@ -17,16 +17,17 @@ def result(username=None):
     user_id = session['id']
     cur.execute("SELECT * FROM questionnaire WHERE _id=(?)", [user_id])
     current_user = cur.fetchone()
+    print(current_user)
     
     cur.execute("SELECT _id FROM questionnaire WHERE answer_1=(?) AND answer_2=(?) AND answer_3=(?)", (current_user[1], current_user[2], current_user[3]))
-    match_users = cur.fetchall()
+    matched_users = cur.fetchall()
+    print(matched_users)
 
-    print(match_users)
+    users = []
 
-    rows = []
-
-    for user in match_users:
+    for user in matched_users:
         cur.execute("SELECT * FROM users WHERE id=(?)", user)
-        rows.append(cur)
-        
-    return render_template('results.html', username=username, rows=rows)
+        users.append(cur)
+    print(users)
+
+    return render_template('results.html', username=username, users=users)
