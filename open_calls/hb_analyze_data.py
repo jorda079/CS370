@@ -1,6 +1,4 @@
-import pickle
-from flask import request, g                                   
-from neurosdk.cmn_types import * 
+import pickle                          
 from auth import request_username
 from tools.logging import logger
 import time
@@ -55,27 +53,13 @@ def handle_request():
             loaded_user_data = pickle.load(file)
         
         for movie_number, data in loaded_user_data.items():
-            if movie_number == 'movie_1_data':
-                movie_1_read = data  
-            elif movie_number == 'movie_2_data':
-                movie_2_read = data  
-            elif movie_number == 'movie_3_data':
-                movie_3_read = data 
+            if movie_number == 'movie_data':
+                movie_read = data  
 
         # Call the function to calculate averages
-        movie_1_avg_O1, movie_1_avg_O2, movie_1_avg_T3, movie_1_avg_T4, movie_1_all_avgs = calculate_average_user_data(movie_1_read)
+        movie_avg_O1, movie_avg_O2, movie_avg_T3, movie_avg_T4, movie_all_avgs = calculate_average_user_data(movie_read)
         # Print the averages
-        logger.debug(f'Movie 1 Averages: O1 = {movie_1_avg_O1}, O2 = {movie_1_avg_O2}, T3 = {movie_1_avg_T3}, T4 = {movie_1_avg_T4}, All Averages = {movie_1_all_avgs}\n')
-
-        # Call the function to calculate averages
-        movie_2_avg_O1, movie_2_avg_O2, movie_2_avg_T3, movie_2_avg_T4, movie_2_all_avgs = calculate_average_user_data(movie_2_read)
-        # Print the averages
-        logger.debug(f'Movie 2 Averages: O1 = {movie_2_avg_O1}, O2 = {movie_2_avg_O2}, T3 = {movie_2_avg_T3}, T4 = {movie_2_avg_T4}, All Averages = {movie_2_all_avgs}\n')
-
-        # Call the function to calculate averages
-        movie_3_avg_O1, movie_3_avg_O2, movie_3_avg_T3, movie_3_avg_T4, movie_3_all_avgs = calculate_average_user_data(movie_3_read)
-        # Print the averages
-        logger.debug(f'Movie 3 Averages: O1 = {movie_3_avg_O1}, O2 = {movie_3_avg_O2}, T3 = {movie_3_avg_T3}, T4 = {movie_3_avg_T4}, All Averages = {movie_3_all_avgs}\n')
+        logger.debug(f'Movie Averages: O1 = {movie_avg_O1}, O2 = {movie_avg_O2}, T3 = {movie_avg_T3}, T4 = {movie_avg_T4}, All Averages = {movie_all_avgs}\n')
 
         # Return that data was analyzed
         return ["Analyzed Brainwave Data"]

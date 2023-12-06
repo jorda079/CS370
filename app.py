@@ -69,17 +69,17 @@ def inbox():
     return render_template('inbox.html')
 
 
-from open_calls.hb_record import update_current_movie
+from open_calls.hb_record import update_movie_status
 # Accepts the current movie value from json
 @app.route('/update_movie', methods=['POST'])
 def update_movie():
-    # Stores json data and sets it to current movie via function
+    # Stores json data and updates value that movies have been watched
     data = json.loads(request.data)
-    current_movie = data['value']
-    update_current_movie(current_movie)
+    movie_finished = data['value']
+    update_movie_status(movie_finished)
 
-    # Returns success with updated movie value
-    return ["Movie Number Updated " + str(current_movie)]
+    # Returns success when movies have been watched
+    return ["Movies Finished"]
 
 @app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
 @token_required
