@@ -2,6 +2,8 @@ import pickle
 from auth import request_username
 from tools.logging import logger
 import time
+from db_con import get_db_instance, get_db
+from flask import session, redirect, url_for, flash
 
 # Class for brain wave data
 class BrainBitSignalData:
@@ -60,6 +62,13 @@ def handle_request():
         movie_avg_O1, movie_avg_O2, movie_avg_T3, movie_avg_T4, movie_all_avgs = calculate_average_user_data(movie_read)
         # Print the averages
         logger.debug(f'Movie Averages: O1 = {movie_avg_O1}, O2 = {movie_avg_O2}, T3 = {movie_avg_T3}, T4 = {movie_avg_T4}, All Averages = {movie_all_avgs}\n')
+
+        db, cur = get_db_instance()
+        if 'id' in session:
+            user_id = session['id']
+            cur.execute("UPDATE users SET hb=(?) WHERE id=(?)", (movie_all_avgs, user_id)) 
+            db.commit()
+            db.close()        
 
         # Return that data was analyzed
         return ["Analyzed Brainwave Data"]
