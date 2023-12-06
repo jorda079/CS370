@@ -108,70 +108,70 @@
             </div>
             <div class="video-container" id="Animals">
                 <div class="video-wrapper">
-                    <video controls src="Animals/animal1.mp4"></video>
+                    <video controls src="/static/Animals/animal1.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Animals/animal2.mp4"></video>
+                    <video controls src="/static/Animals/animal2.MP4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Animals/animal3.mp4"></video>
+                    <video controls src="/static/Animals/animal3.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Animals/animal4.mp4"></video>
+                    <video controls src="/static/Animals/animal4.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Animals/animal5.mp4"></video>
+                    <video controls src="/static/Animals/animal5.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
             </div>
             <div class="video-container" id="Anime">
                 <div class="video-wrapper">
-                    <video controls src="Anime/anime1.mp4"></video>
+                    <video controls src="/static/Anime/anime1.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Anime/anime2.mp4"></video>
+                    <video controls src="/static/Anime/anime2.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Anime/anime3.mp4"></video>
+                    <video controls src="/static/Anime/anime3.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
             </div>
             <div class="video-container" id="Nature">
                 <div class="video-wrapper">
-                    <video controls src="Nature/nature1.mp4"></video>
+                    <video controls src="/static/Nature/nature1.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div><div class="video-wrapper">
-                    <video controls src="Nature/nature2.mp4"></video>
+                    <video controls src="/static/Nature/nature2.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Nature/nature3.mp4"></video>
+                    <video controls src="/static/Nature/nature3.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Nature/nature4.mp4"></video>
+                    <video controls src="/static/Nature/nature4.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
                 <div class="video-wrapper">
-                    <video controls src="Nature/nature5.mp4"></video>
+                    <video controls src="/static/Nature/nature5.mp4"></video>
                     <button class="thumb-button thumb-down">&#128078;</button>
                     <button class="thumb-button thumb-up">&#128077;</button>
                 </div>
@@ -179,8 +179,23 @@
         </div>
     </section>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+		     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+
+        // Boolean to see if the user data has been created.
+        let userDataCreated = false;
+        // Boolean to see if movie has finished playing.
+        let moviesFinished = false;
+        // String to hold the current category
+        let currentCategory = ''
+        // Int to hold how many movies user watched
+        let moviesWatched = 0
+
         function showVideos(category) {
             // Hide all video containers
             $('.video-container').hide();
@@ -201,6 +216,7 @@
                     `);
                 }
             }
+            currentCategory = category;
         }
 
         // Event listeners for thumbs up and down
@@ -212,49 +228,13 @@
             $(this).css('background-color', 'red');
         });
 
-        
-        // Event listeners for when the video ends
-        const videos = [document.getElementById("Puppies"), document.getElementById("Anime"), document.getElementById("Nature")];
-
-        videos.forEach(video => {
-            video.addEventListener("ended", () => {
-                video.style.display = "none";
-                // Reset the video source to prevent auto-play when shown again
-                video.src = "";
-                // Show the buttons
-                playButtons.style.display = "block";
-                stop_control_movie();
-                if(puppiesVideoPlayed == true && animeVideoPlayed == true && natureVideoPlayed == true){
-                    // Terminates recording script
-                    currentMovie = 4;
-                    updateMovie();
-
-                    // If all 3 movies are played, we save the file.
-                    store_movie_data();
-                    analyze_data();
-                }
-            });
-            video.addEventListener("pause", (event) => {
-                stop_control_movie();
-            });
-            video.addEventListener("play", (event) => {
-                // Start recording data for the current video
-                play_control_movie();
-                // Creates the user data variabel if it does not exist.
-                if(!userDataCreated){
-                    userDataCreated = true;
-                    record_movie_data();
-                }
-            });
-        });
-
         function updateMovie() {
             // Make an AJAX request to the Flask server
             $.ajax({
                 type: "POST",
                 url: "/update_movie",
                 contentType: "application/json;charset=UTF-8",
-                data: JSON.stringify({ value: currentMovie }),
+                data: JSON.stringify({ value: moviesFinished }),
                 success: function (response) {
                     // Update With success if value is passed
                     console.log(response);
@@ -321,19 +301,40 @@
                   console.log("error");
               console.log(response);});
       }
+      $(document).ready(function() {
 
-      // Event listeners for when the movie is played, as well as when it is paused or ends.
-      video.addEventListener("play", (event) => {
-          play_control_movie();
-          record_movie_data();
-      });
-      video.addEventListener("pause", (event) => {
-          stop_control_movie();
-      });
-      video.addEventListener("ended", (event) => {
-          stop_control_movie();
-          store_movie_data();
-      });
+        // Event listener for video play, pause, and end
+        $('video').on('play pause ended', function() {
+            if (event.type === 'ended') {
+                moviesWatched += 1;
+                console.log("Finished Movie #"+moviesWatched);
+                if(((currentCategory == 'Animals' || currentCategory == 'Nature') && moviesWatched == 5) || (currentCategory == 'Anime' && moviesWatched == 3)){
+                    // Ends recording
+                    stop_control_movie();
+
+                    // Terminates recording script
+                    moviesFinished = true;
+                    updateMovie();
+
+                    // Saves and analyzes data
+                    store_movie_data();
+                    analyze_data();
+                }
+            } else if (event.type === 'pause') {
+                // Pauses recording
+                stop_control_movie();
+            } else {
+                // Start recording data for the current video
+                play_control_movie();
+                // Creates the user data variabel if it does not exist.
+                if(!userDataCreated){
+                    userDataCreated = true;
+                    record_movie_data();
+                }
+            }
+        });
+
+        });
     </script>
 </body>
 </html>
