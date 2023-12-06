@@ -14,9 +14,8 @@ def result(username=None):
         return redirect(url_for("auth.login"))
     
     '''
-    matching process method
-    Algorithms: match with person who has the same answer from questionnaire.
-    User can see the group of people who have the same answer.
+    * matching process method
+    * algorithms: match with the person who has the same answer from questionnaire
     '''
     user_id = session['id']
     cur.execute("SELECT * FROM questionnaire WHERE _id=(?)", [user_id])
@@ -32,4 +31,5 @@ def result(username=None):
         cur.execute("SELECT * FROM users WHERE id=(?)", user)
         row = cur.fetchone()
         users.append(row)
+    db.close()
     return render_template('results.html', username=username, users=users)
