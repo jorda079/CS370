@@ -72,6 +72,7 @@ def login_post():
     # session includes user name & id
     session['name'] = user[1]   
     session['id'] = user[0]
+    db.close()
     return redirect(url_for("auth.profile", username=session['name']))
 
 # user authentication: user profile mtethod
@@ -98,6 +99,7 @@ def profile(username=None):
     'introduce': user[8],
     'profile_pic' : user[9]
     }
+    db.close()
     return render_template("profile.html", profile=profile, username=username)
 
 # user authentication: logout method

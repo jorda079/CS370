@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS users (
             gender TEXT,
             birth TEXT, 
             introduce TEXT,
-            profile_photo TEXT
+            profile_photo TEXT,
+            hb REAL
 );
 
 CREATE TABLE IF NOT EXISTS questionnaire (
