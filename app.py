@@ -142,7 +142,7 @@ def upload_file():
 
     # store the image file into database
     username = session['name']
-    cur.execute("UPDATE users SET profile_photo=? WHERE name=?", (profile_pic, username))
+    cur.execute("UPDATE users SET profile_photo=(?) WHERE name=(?)", (profile_pic, username))
     db.commit()
     db.close()
     return redirect(url_for("auth.profile"))

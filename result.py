@@ -3,6 +3,11 @@ from db_con import get_db_instance, get_db
 
 res = Blueprint('res', __name__)
 
+
+def hb_upload():
+
+    return
+
 # result page
 @res.route('/result')
 @res.route('/result/<username>')
