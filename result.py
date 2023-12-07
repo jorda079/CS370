@@ -26,7 +26,7 @@ def result(username=None):
     cur.execute("SELECT * FROM questionnaire WHERE _id=(?)", [user_id])
     current_user = cur.fetchone()
     
-    cur.execute("SELECT _id FROM questionnaire WHERE answer_1=(?) AND answer_2=(?) AND answer_3=(?) AND _id != (?)", (current_user[1], current_user[2], current_user[3], user_id))
+    cur.execute("SELECT _id FROM questionnaire WHERE group_num =(?) AND _id != (?)", (current_user[1], user_id))
     matched_users = cur.fetchall()
 
     users = []
