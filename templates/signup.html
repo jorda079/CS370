@@ -188,21 +188,19 @@
 				<br>
 				<label for="introduce">Introduce Yourself:</label>
 				<br>
-				<textarea id="introduce" class="textarea" name="introduce">Enter text here...</textarea>
+				<textarea id="introduce" class="textarea" name="introduce" placeholder="Enter text here..."></textarea>
 				<div id="introduce_empty" style="display:none;" class="error">
 					<br>
 					<span>Introduction required</span>
 				</div>
-				<label for="question1" class="form-label">I prefer to socialize with other people at public events:</label>
-			<select id="question1" name="question1" class="form-control" required>
+			<label for="question1" class="form-label">What group would you best identify with?</label>
+			<select id="question1" name="question" class="form-control" required>
 				<option value="" selected disabled>Please select an option</option>
-				<option value="Strongly agree">Strongly Agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Neutral">Neutral</option>
-				<option value="Disagree">Disagree</option>
-				<option value="Strongly disagree">Strongly Disagree</option>
+				<option value="group1">Group 1 - Animals</option>
+				<option value="group2">Group 2 - Anime</option>
+				<option value="group3">Group 3 - Nature</option>
 			</select>
-			<label for="question2" class="form-label">Owning pets is a good thing:</label>
+			<!-- <label for="question2" class="form-label">Owning pets is a good thing:</label>
 			<select id="question2" name="question2" class="form-control" required>
 				<option value="" selected disabled>Please select an option</option>
 				<option value="Strongly agree">Strongly Agree</option>
@@ -219,7 +217,7 @@
 				<option value="Neutral">Neutral</option>
 				<option value="Disagree">Disagree</option>
 				<option value="Strongly disagree">Strongly Disagree</option>
-			</select>
+			</select> -->
 			<label for="message" class="form-label">Additional comments</label>
 			<textarea id="message" name="message" class="form-control" rows="5"></textarea>
 			<!-- <button type="submit" class="submit-button">Submit</button> -->

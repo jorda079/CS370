@@ -23,9 +23,7 @@ def signup_post():
     address = request.form.get('address')
     phone = request.form.get('phone')
     introduce = request.form.get('introduce')
-    question1 = request.form.get('question1')
-    question2 = request.form.get('question2')
-    question3 = request.form.get('question3')
+    question = request.form.get('question')
     message = request.form.get("message")    
 
 
@@ -39,7 +37,7 @@ def signup_post():
     # add new user into database with questionnarie answer
     # save database using commit()
     cur.execute("INSERT INTO users (name, password, email, address, phone, gender, birth, introduce) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (username, password, email, address, phone, gender, str(birthdate), introduce))
-    cur.execute("INSERT INTO questionnaire (answer_1, answer_2, answer_3, comments) VALUES (?, ?, ?, ?)",(question1, question2, question3, message))
+    cur.execute("INSERT INTO questionnaire (group_num, comments) VALUES (?, ?)",(question, message))
     db.commit()
     db.close()
     return redirect(url_for('auth.login'))    

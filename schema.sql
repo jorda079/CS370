@@ -17,9 +17,6 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS questionnaire (
             _id INTEGER PRIMARY KEY AUTOINCREMENT,
-            answer_1 TEXT,
-            answer_2 TEXT,
-            answer_3 TEXT,
-            answer_4 TEXT,
+            group_num TEXT,
             comments TEXT
 );
