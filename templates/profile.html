@@ -111,6 +111,22 @@
             width: 100%;
             align-items: center;
         }
+        .save-button{
+            background-color:#461f05;
+            color:white;
+            width:100px;
+            text-align:center;
+            border-radius:10px;
+            border-width:0px;
+            display:inline-block;
+        }
+        /* .custom-file-input {
+            padding: 6px 25px;
+            background-color:#FF6600;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        } */
 
 	</style>
 </head>
@@ -154,7 +170,9 @@
             {% else %}
             <img src="/static/images/image.jpg" class="rounded-circle" width="150">
             {% endif %}
+            <br>
 			<input type="file" accept="image/jpeg, image/png, image/jpg" name="profile_pic">
+            <br>
             <button type="save" class="save-button">Save</button>
         </ul>
 		
